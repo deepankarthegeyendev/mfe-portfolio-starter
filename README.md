@@ -1,1 +1,1 @@
-# mfe-portfolio-starter
+# Micro Frontend Portfolio Starter

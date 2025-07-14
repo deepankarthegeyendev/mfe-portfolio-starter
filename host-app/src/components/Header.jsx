@@ -2,16 +2,28 @@ import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import profile from '../assets/profile.jpg';
-import { FaFileAlt, FaEnvelope, FaMoon, FaLinkedin } from 'react-icons/fa';
-import { SiGmail } from 'react-icons/si';
+import { FaFileAlt, FaEnvelope, FaMoon } from 'react-icons/fa';
 
 export default function Header({ theme, onToggleTheme }) {
   const navigate = useNavigate();
   return (
-    <Navbar bg={theme === 'dark' ? 'dark' : 'light'} variant={theme === 'dark' ? 'dark' : 'light'} expand="lg" className="mb-5">
+    <Navbar bg={theme === 'dark' ? 'dark' : undefined} variant={theme === 'dark' ? 'dark' : 'light'} expand="lg" className="fixed-header" style={theme === 'dark' ? {} : { background: '#f8f5e6' }}>
       <Container fluid>
         <Navbar.Brand as={Link} to="/" className="d-flex align-items-center" style={{ paddingRight: 0, cursor: 'pointer' }}>
-          <img src={profile} alt="Profile" width={48} height={48} className="rounded-circle" style={{ objectFit: 'cover', border: '2px solid #bada55' }} />
+          <img
+            src={profile}
+            alt="Profile"
+            width={48}
+            height={48}
+            className="rounded-circle"
+            style={{ objectFit: 'cover', border: '2px solid #bada55', cursor: 'pointer' }}
+            onClick={() => {
+              const heroSection = document.getElementById('hero');
+              if (heroSection) {
+                heroSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+          />
         </Navbar.Brand>
         <div className="flex-grow-1" />
         <Nav className="ms-auto align-items-center justify-content-end" style={{ gap: '0.5rem' }}>

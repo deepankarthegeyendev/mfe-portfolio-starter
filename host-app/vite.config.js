@@ -5,6 +5,10 @@ export default defineConfig({
   base: process.env.NODE_ENV === 'production' ? '/personal-website/' : '/', //comment
   plugins: [react()],
   server: {
-    open: true
+    open: {
+      app: {
+        name: 'chrome'
+      }
+    }
   }
 })

@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route, useNavigate, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Projects from './components/Projects'
 import SystemDesign from './components/SystemDesign'
-import Skills from './components/Skills'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import { Container, Row, Col, Form, Button, Navbar, Nav } from 'react-bootstrap'
-import { FaRegCopyright, FaEnvelope, FaLinkedin, FaGithub, FaFileAlt, FaMoon } from 'react-icons/fa'
-import { SiGmail } from 'react-icons/si'
+import { Container, Row, Col } from 'react-bootstrap'
+import { FaRegCopyright } from 'react-icons/fa'
 import profile from './assets/profile.jpg'
 
 const resumeData = {
@@ -242,133 +240,27 @@ function LandingPage({ theme }) {
 
   return (
     <div style={{ background: isDark ? '#23182a' : '#f7f7fa', minHeight: '100vh', color: isDark ? 'white' : '#222', transition: 'background 0.3s, color 0.3s' }}>
-      <Container className="py-3">
-        <Row className="justify-content-center mb-4">
-          <Col md="auto" className="text-center">
-            {/* <Link to="/" style={{ display: 'inline-block' }}>
-              <img src={profile} alt="Profile" width={64} height={64} className="rounded-circle mb-2" style={{ objectFit: 'cover', border: '2px solid #bada55', cursor: 'pointer' }} />
-            </Link> */}
-            <h1 style={{ fontWeight: 'bold', fontSize: '2.2rem', marginBottom: 0, color: panelText }}>Deepan Karthegeyen</h1>
-            <div style={{ fontSize: '1.2rem', color: isDark ? '#bbb' : '#444' }}>A Full Stack Architect</div>
-            <hr style={{ borderTop: `3px solid #bada55`, width: '60%', margin: '1rem auto' }} />
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', fontSize: '2rem' }}>
-              <a href="mailto:deepan_31@yahoo.co.in" style={{ color: '#bada55' }} title="Mail"><FaEnvelope /></a>
-              <a href="https://www.linkedin.com/in/deepankarthegeyen" target="_blank" rel="noopener noreferrer" style={{ color: '#bada55' }} title="LinkedIn"><FaLinkedin /></a>
-              <a href="mailto:deepan_31@gmail.com" style={{ color: '#bada55' }} title="Gmail"><SiGmail /></a>
-            </div>
+      <Container style={{ paddingTop: 0 }}>
+        <Row className="justify-content-center" style={{ marginBottom: 0 }}>
+          <Col md="auto" className="text-center" style={{ marginTop: 0, paddingTop: 0 }}>
+            <Hero theme={theme} />
           </Col>
         </Row>
         <Row className="justify-content-center mb-3">
           <Col md={10} className="text-center">
-            <h2 style={{ color: panelText }}>Projects</h2>
-            <div className="row justify-content-center" style={{ gap: '0.5rem' }}>
-              <div className="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
-                <div style={{ background: panel1Bg, borderRadius: '7px', padding: '1.2rem', boxShadow: '0 0 6px #0002', color: panelText, width: '100%', maxWidth: 400 }}>
-                  <div style={{ textAlign: 'left' }}>
-                    <div style={{ fontWeight: 'bold', fontSize: '1.3rem', color: panelText }}>InterviewIQ</div>
-                    <div style={{ color: tagColor, marginBottom: 8 }}>A GenAI-powered resume-JD matcher that leverages OpenAI embeddings and cosine similarity. Built with .NET Web API, React, and Azure Functions.</div>
-                    <div style={{ color: tagColor, fontSize: '0.95rem' }}>
-                      <span style={{ marginRight: 12 }}>Tags: AI · OpenAI · .NET · Azure · Resume Matching</span>
-                    </div>
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', minWidth: 120, marginTop: 12 }}>
-                    <a href="https://interviewiq.example.com" target="_blank" rel="noopener noreferrer" style={{ background: '#bada55', color: '#222', fontWeight: 'bold', borderRadius: 5, padding: '0.4rem 1.2rem', textDecoration: 'none', marginBottom: 6 }}>Website</a>
-                    <a href="https://github.com/deepankarthegeyen/interviewiq" target="_blank" rel="noopener noreferrer" style={{ background: '#bada55', color: '#222', fontWeight: 'bold', borderRadius: 5, padding: '0.4rem 1.2rem', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <FaGithub style={{ marginRight: 6, fontSize: '1.2rem' }} /> GitHub
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
-                <div style={{ background: panel2Bg, borderRadius: '7px', padding: '1.2rem', boxShadow: '0 0 6px #0002', color: panelText, width: '100%', maxWidth: 400 }}>
-                  <div style={{ textAlign: 'left' }}>
-                    <div style={{ fontWeight: 'bold', fontSize: '1.3rem', color: panelText }}>Micro-Frontend Application</div>
-                    <div style={{ color: tagColor, marginBottom: 8 }}>A scalable micro-frontend architecture using React, NextJs, and .NET Core for modular enterprise applications.</div>
-                    <div style={{ color: tagColor, fontSize: '0.95rem', marginBottom: 8 }}>Tags: React · NextJs · .NET Core</div>
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', minWidth: 120, marginTop: 12 }}>
-                    <a href="#" target="_blank" rel="noopener noreferrer" style={{ background: '#bada55', color: '#222', fontWeight: 'bold', borderRadius: 5, padding: '0.4rem 1.2rem', textDecoration: 'none', marginBottom: 6 }}>Website</a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" style={{ background: '#bada55', color: '#222', fontWeight: 'bold', borderRadius: 5, padding: '0.4rem 1.2rem', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <FaGithub style={{ marginRight: 6, fontSize: '1.2rem' }} /> GitHub
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Projects theme={theme} />
           </Col>
         </Row>
+        {/* <Row className="justify-content-center mb-3">
+          <Col md={10} className="text-center">
+            <Skills resumeData={resumeData} />
+          </Col>
+        </Row> */}
         <div style={{ marginTop: '1rem' }}>
           <SystemDesign />
         </div>
       </Container>
     </div>
-  )
-}
-
-function ContactPage({ theme }) {
-  const isDark = theme === 'dark'
-  const bodyStyle = {
-    background: isDark ? '#322430' : '#f7f7fa',
-    borderRadius: '10px',
-    padding: '2rem',
-    boxShadow: '0 0 10px #0002',
-    border: '1px solid #4b3a4d'
-  }
-
-  return (
-    <div style={bodyStyle}>
-      <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
-        <Col md={6} style={{ background: isDark ? '#322430' : '#f7f7fa', borderRadius: '10px', padding: '2rem', boxShadow: '0 0 10px #0002', border: '1px solid #4b3a4d' }}>
-          <div className="text-center mb-3">
-            <h2 className="mb-0" style={{ fontWeight: 'bold', color: isDark ? 'white' : '#222' }}>Contact Me</h2>
-          </div>
-          <div className="text-center mb-3" style={{ fontWeight: 'bold', color: isDark ? '#bada55' : '#222', fontSize: '1.2rem' }}>
-            at <a href="mailto:deepan_31@yahoo.co.in" style={{ color: isDark ? '#bada55' : '#222', textDecoration: 'underline' }}>deepan_31@yahoo.co.in</a>
-          </div>
-          <hr style={{ borderTop: '3px solid #bada55', width: '60%', margin: '0 auto 2rem auto' }} />
-          <Form>
-            <Form.Group className="mb-3" controlId="formName">
-              <Form.Label>Name:</Form.Label>
-              <Form.Control type="text" placeholder="Enter your name" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formEmail">
-              <Form.Label>Your Email:</Form.Label>
-              <Form.Control type="email" placeholder="Enter your email" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formMessage">
-              <Form.Label>Message:</Form.Label>
-              <Form.Control as="textarea" rows={5} placeholder="Type your message here..." />
-            </Form.Group>
-            <Button type="submit" style={{ background: '#bada55', border: 'none', color: '#222', width: '100%', fontWeight: 'bold' }}>Submit</Button>
-          </Form>
-        </Col>
-      </Container>
-    </div>
-  )
-}
-
-function AppNavbar({ theme, onToggleTheme }) {
-  const navigate = useNavigate()
-  return (
-    <Navbar bg={theme === 'dark' ? 'dark' : 'light'} variant={theme === 'dark' ? 'dark' : 'light'} expand="lg" className="mb-5">
-      <Container fluid>
-        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center" style={{ paddingRight: 0, cursor: 'pointer' }}>
-          <img src={profile} alt="Profile" width={48} height={48} className="rounded-circle" style={{ objectFit: 'cover', border: '2px solid #bada55' }} />
-        </Navbar.Brand>
-        <div className="flex-grow-1" />
-        <Nav className="ms-auto align-items-center justify-content-end" style={{ gap: '0.5rem' }}>
-          <Nav.Link onClick={() => navigate('/resume')} style={{ color: theme === 'dark' ? 'white' : '#222', display: 'flex', alignItems: 'center' }}>
-            <FaFileAlt style={{ marginRight: 6 }} /> Resume
-          </Nav.Link>
-          <Nav.Link onClick={() => navigate('/contact')} style={{ color: theme === 'dark' ? 'white' : '#222', display: 'flex', alignItems: 'center' }}>
-            <FaEnvelope style={{ marginRight: 6 }} /> Contact
-          </Nav.Link>
-          <Nav.Link style={{ color: theme === 'dark' ? 'white' : '#222', display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={onToggleTheme}>
-            <FaMoon style={{ marginRight: 6 }} /> Theme
-          </Nav.Link>
-        </Nav>
-      </Container>
-    </Navbar>
   )
 }
 
@@ -395,21 +287,25 @@ function App() {
     color: isDark ? 'white' : '#222',
     transition: 'background 0.3s, color 0.3s',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    minHeight: '80vh'
   }
 
   return (
     <div style={bodyStyle}>
       <Router>
-        <AppNavbar theme={theme} onToggleTheme={toggleTheme} />
+        <Header theme={theme} onToggleTheme={toggleTheme} />
         <div style={{ flex: 1 }}>
           <Routes>
-            <Route path="/" element={<LandingPage theme={theme} />} />
-            <Route path="/contact" element={<ContactPage theme={theme} />} />
+            <Route
+              path={process.env.NODE_ENV === 'production' ? '/personal-website/' : '/'}
+              element={<LandingPage theme={theme} />}
+            />
+            <Route path="/contact" element={<Contact theme={theme} />} />
             <Route path="/resume" element={<ResumePage theme={theme} />} />
           </Routes>
         </div>
-        <AppFooter theme={theme} />
+        <Footer theme={theme} />
       </Router>
     </div>
   )

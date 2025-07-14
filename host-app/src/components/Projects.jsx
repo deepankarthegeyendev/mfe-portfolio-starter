@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaGithub } from 'react-icons/fa';
+import { FaGlobe } from 'react-icons/fa';
 
 export default function Projects({ theme }) {
   const isDark = theme === 'dark';
@@ -9,38 +10,42 @@ export default function Projects({ theme }) {
   const tagColor = isDark ? '#eaeaea' : '#444';
   return (
     <div className="text-center mb-3">
-      <h2 style={{ color: panelText }}>Projects</h2>
-      <div className="row justify-content-center" style={{ gap: '0.5rem' }}>
-        <div className="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
-          <div style={{ background: panel1Bg, borderRadius: '7px', padding: '1.2rem', boxShadow: '0 0 6px #0002', color: panelText, width: '100%', maxWidth: 400 }}>
-            <div style={{ textAlign: 'left' }}>
-              <div style={{ fontWeight: 'bold', fontSize: '1.3rem', color: panelText }}>InterviewIQ</div>
-              <div style={{ color: tagColor, marginBottom: 8 }}>A GenAI-powered resume-JD matcher that leverages OpenAI embeddings and cosine similarity. Built with .NET Web API, React, and Azure Functions.</div>
-              <div style={{ color: tagColor, fontSize: '0.95rem' }}>
-                <span style={{ marginRight: 12 }}>Tags: AI · OpenAI · .NET · Azure · Resume Matching</span>
-              </div>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', minWidth: 120, marginTop: 12 }}>
-              <a href="https://interviewiq.example.com" target="_blank" rel="noopener noreferrer" style={{ background: '#bada55', color: '#222', fontWeight: 'bold', borderRadius: 5, padding: '0.4rem 1.2rem', textDecoration: 'none', marginBottom: 6 }}>Website</a>
-              <a href="https://github.com/deepankarthegeyen/interviewiq" target="_blank" rel="noopener noreferrer" style={{ background: '#bada55', color: '#222', fontWeight: 'bold', borderRadius: 5, padding: '0.4rem 1.2rem', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <FaGithub style={{ marginRight: 6, fontSize: '1.2rem' }} /> GitHub
-              </a>
+      <h2 style={{ color: panelText, marginTop: 0 }}>Projects</h2>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}>
+        {/* Project 1 */}
+        <div style={{ display: 'flex', flexDirection: 'row', background: panel1Bg, borderRadius: '10px', padding: '1.2rem', boxShadow: '0 0 6px #0002', color: panelText, width: '100%', maxWidth: 700, alignItems: 'stretch' }}>
+          <div style={{ flex: 1, textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ fontWeight: 'bold', fontSize: '1.3rem', color: panelText, marginBottom: 4 }}>InterviewIQ</div>
+            <div style={{ color: tagColor, marginBottom: 8, fontSize: '1.08rem' }}>A GenAI-powered resume-JD matcher that leverages OpenAI embeddings and cosine similarity.</div>
+            <div style={{ color: tagColor, fontSize: '1.05rem', marginBottom: 8 }}>
+              AI · OpenAI · .NET · Azure · Resume Matching
             </div>
           </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', justifyContent: 'center', marginLeft: 24, minWidth: 120 }}>
+            <a href="https://interviewiq.example.com" target="_blank" rel="noopener noreferrer" className="project-btn project-btn-vertical" title="Visit project website">
+              <FaGlobe style={{ marginRight: 8, fontSize: '1.1rem' }} /> <span style={{ fontWeight: 600 }}>Website</span>
+            </a>
+            <a href="https://github.com/deepankarthegeyen/interviewiq" target="_blank" rel="noopener noreferrer" className="project-btn project-btn-vertical" title="View source code on GitHub">
+              <FaGithub style={{ marginRight: 8, fontSize: '1.1rem' }} /> <span style={{ fontWeight: 600 }}>GitHub</span>
+            </a>
+          </div>
         </div>
-        <div className="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
-          <div style={{ background: panel2Bg, borderRadius: '7px', padding: '1.2rem', boxShadow: '0 0 6px #0002', color: panelText, width: '100%', maxWidth: 400 }}>
-            <div style={{ textAlign: 'left' }}>
-              <div style={{ fontWeight: 'bold', fontSize: '1.3rem', color: panelText }}>Micro-Frontend Application</div>
-              <div style={{ color: tagColor, marginBottom: 8 }}>A scalable micro-frontend architecture using React, NextJs, and .NET Core for modular enterprise applications.</div>
-              <div style={{ color: tagColor, fontSize: '0.95rem', marginBottom: 8 }}>Tags: React · NextJs · .NET Core</div>
+        {/* Project 2 */}
+        <div style={{ display: 'flex', flexDirection: 'row', background: panel2Bg, borderRadius: '10px', padding: '1.2rem', boxShadow: '0 0 6px #0002', color: panelText, width: '100%', maxWidth: 700, alignItems: 'stretch' }}>
+          <div style={{ flex: 1, textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ fontWeight: 'bold', fontSize: '1.3rem', color: panelText, marginBottom: 4 }}>Micro-Frontend Application</div>
+            <div style={{ color: tagColor, marginBottom: 8, fontSize: '1.08rem' }}>A scalable micro-frontend architecture using React, NextJs, and .NET Core for modular enterprise applications.</div>
+            <div style={{ color: tagColor, fontSize: '1.05rem', marginBottom: 8 }}>
+              React · NextJs · .NET Core
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', minWidth: 120, marginTop: 12 }}>
-              <a href="#" target="_blank" rel="noopener noreferrer" style={{ background: '#bada55', color: '#222', fontWeight: 'bold', borderRadius: 5, padding: '0.4rem 1.2rem', textDecoration: 'none', marginBottom: 6 }}>Website</a>
-              <a href="#" target="_blank" rel="noopener noreferrer" style={{ background: '#bada55', color: '#222', fontWeight: 'bold', borderRadius: 5, padding: '0.4rem 1.2rem', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <FaGithub style={{ marginRight: 6, fontSize: '1.2rem' }} /> GitHub
-              </a>
-            </div>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', justifyContent: 'center', marginLeft: 24, minWidth: 120 }}>
+            <a href="#" target="_blank" rel="noopener noreferrer" className="project-btn project-btn-vertical" title="Visit project website">
+              <FaGlobe style={{ marginRight: 8, fontSize: '1.1rem' }} /> <span style={{ fontWeight: 600 }}>Website</span>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" className="project-btn project-btn-vertical" title="View source code on GitHub">
+              <FaGithub style={{ marginRight: 8, fontSize: '1.1rem' }} /> <span style={{ fontWeight: 600 }}>GitHub</span>
+            </a>
           </div>
         </div>
       </div>

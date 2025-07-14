@@ -1,0 +1,82 @@
+/* Header icons (Resume, Contact, Theme) hover effect */
+.navbar-nav .nav-link {
+  transition: color 0.2s, background 0.2s;
+  border-radius: 8px;
+  padding: 0.3rem 0.8rem;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #222 !important;
+  background: #bada55 !important;
+  border-radius: 8px;
+}
+
+/* Project Website and GitHub button hover effect */
+.project-btn, .project-btn:visited {
+  background: #fff !important;
+  color: #222 !important;
+  font-weight: bold;
+  font-size: 0.95rem;
+  width: auto;
+  border-radius: 6px;
+  padding: 0.25rem 0.7rem;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  border: 2px solid transparent !important;
+  display: inline-flex;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.project-btn svg {
+  font-size: 1rem !important;
+}
+
+.project-btn:hover, .project-btn:focus {
+  background: #bada55 !important;
+  color: #222 !important;
+  border: 2px solid #bada55 !important;
+  box-shadow: 0 2px 8px #bada5522;
+  outline: none;
+}
+
+.project-btn-vertical {
+  background: #19c89b !important;
+  color: #fff !important;
+  border-radius: 7px;
+  border: none !important;
+  font-weight: bold;
+  width: 100%;
+  justify-content: flex-start;
+  font-size: 1rem;
+  padding: 0.5rem 1.2rem;
+  transition: background 0.2s, color 0.2s;
+}
+.project-btn-vertical:hover, .project-btn-vertical:focus {
+  background: #13a87d !important;
+  color: #fff !important;
+}
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1050;
+  box-shadow: 0 2px 8px #0002;
+}
+
+/* Add top padding to main content to prevent it from hiding behind the fixed header */
+body, #root > div {
+  padding-top: 76px; /* Adjust if your header is taller/shorter */
+}
+
+.hover-highlight {
+  transition: background 0.3s, color 0.2s, transform 0.2s;
+}
+.hover-highlight:hover, .hover-highlight:focus {
+  background: rgba(186, 218, 85, 0.2) !important;
+  color: #bada55 !important;
+  transform: scale(1.05);
+} 

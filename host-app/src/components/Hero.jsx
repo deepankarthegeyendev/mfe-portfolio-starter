@@ -43,8 +43,7 @@ export default function Hero({ theme }) {
         <a href="https://www.linkedin.com/in/deepankarthegeyen" target="_blank" rel="noopener noreferrer" className="hero-social-icon hover-highlight" title="LinkedIn" aria-label="LinkedIn"><FaLinkedin /></a>
         <a href="https://github.com/deepankarthegeyendev" target="_blank" rel="noopener noreferrer" className="hero-social-icon hover-highlight" title="GitHub" aria-label="GitHub"><FaGithub /></a>
       </div>
-      <br />
-      <a
+      {/* <a
         href="projects"
         className="btn hover-highlight"
         style={{
@@ -59,7 +58,7 @@ export default function Hero({ theme }) {
         }}
       >
         View My Work
-      </a>
+      </a> */}
     </div>
   );
 } 

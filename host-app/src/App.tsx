@@ -1,33 +1,35 @@
 import React from 'react';
 import { FaEnvelope, FaLinkedin, FaMedium, FaGlobe, FaGithub } from 'react-icons/fa';
+import profile from './assets/profile.jpg';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import SystemDesign from './SystemDesign';
 
 const projects = [
   {
-    title: 'InterviewIQ',
-    description: 'A GenAI-powered resume-JD matcher that leverages OpenAI embeddings and cosine similarity.',
-    tags: ['AI', 'OpenAI', '.NET', 'Azure', 'Resume Matching'],
-    website: 'https://interviewiq.example.com',
-    github: 'https://github.com/deepankarthegeyen/interviewiq',
-  },
-  {
-    title: 'Micro-Frontend Application',
-    description: 'A scalable micro-frontend architecture using React, NextJs, and .NET Core for modular enterprise applications.',
-    tags: ['React', 'Next.js', '.NET Core'],
+    title: 'tourist-explorer - Remote MFE 1 (Angular) with Module Federation',
+    description: 'A modular micro frontend that showcases top tourist attractions across cities and states in India.',
+    features: [
+      'Dynamic location-based suggestions',
+      'Image gallery & local highlights',
+      'Weather API & embedded maps',
+      'Exposed as tourist/TouristApp via Module Federation',
+    ],
+    tech: 'React, Tailwind, Vite, REST API',
     website: '#',
     github: '#',
   },
-];
-
-const systemDesigns = [
   {
-    title: 'HRMS Payroll Microservices',
-    description:
-      'Decomposed a monolithic payroll system into microservices including Tax, Salary, Leave, and Timesheet. Used React and .NET Core.',
-  },
-  {
-    title: 'InterviewIQ AI Bot Architecture',
-    description:
-      'Build a GenAI-powered resume-matching system using OpenAI + cosine similarity. Stateless frontend on React and backend APIs on Azure Functions.',
+    title: 'resumegpt - React',
+    description: 'A lightweight AI-powered tool that helps users generate and improve resumes based on job descriptions.',
+    features: [
+      'GPT-based suggestion for resume bullet points',
+      'Live JD parser and skill gap analysis',
+      'Export as PDF',
+      'Exposed as resumegpt/ResumeApp via Module Federation',
+    ],
+    tech: 'React, OpenAI API, Vite, Chakra UI',
+    website: '#',
+    github: '#',
   },
 ];
 
@@ -39,7 +41,7 @@ const socialLinks = [
   { icon: <FaMedium />, url: 'https://medium.com/', label: 'Medium' },
 ];
 
-const App: React.FC = () => {
+function MainPage() {
   return (
     <div style={{ background: '#23182a', minHeight: '100vh', color: 'white', fontFamily: 'Inter, Arial, sans-serif' }}>
       {/* Fixed Header */}
@@ -59,7 +61,7 @@ const App: React.FC = () => {
         }}
       >
         <img
-          //src={profile}
+          src={profile}
           alt="Profile"
           style={{ width: 64, height: 64, borderRadius: '50%', objectFit: 'cover', marginLeft: 32, border: '2px solid #bada55' }}
         />
@@ -83,7 +85,7 @@ const App: React.FC = () => {
         </div>
       </header>
       {/* Main Content */}
-      <main style={{ paddingTop: headerHeight + 32, maxWidth: 700, margin: '0 auto' }}>
+      <main style={{ paddingTop: headerHeight + 32, maxWidth: 1100, margin: '0 auto' }}>
         <button
           style={{
             background: '#19c89b',
@@ -108,20 +110,24 @@ const App: React.FC = () => {
             <div
               key={proj.title}
               style={{
-                background: proj.title === 'InterviewIQ' ? '#46605a' : '#7a5fa0',
+                background: '#46605a',
                 borderRadius: 16,
                 padding: '1.5rem 1.2rem',
                 display: 'flex',
-                alignItems: 'center',
+                alignItems: 'flex-start',
                 boxShadow: '0 0 6px #0002',
                 minHeight: 120,
+                marginBottom: 12,
               }}
             >
               <div style={{ flex: 1 }}>
                 <div style={{ fontWeight: 700, fontSize: '1.25rem', marginBottom: 4 }}>{proj.title}</div>
                 <div style={{ color: '#eaeaea', fontSize: '1.08rem', marginBottom: 8 }}>{proj.description}</div>
+                <ul style={{ color: '#bada55', fontSize: '1.05rem', marginBottom: 8, fontWeight: 500, paddingLeft: 20 }}>
+                  {proj.features && proj.features.map((f, i) => <li key={i}>{f}</li>)}
+                </ul>
                 <div style={{ color: '#bada55', fontSize: '1.05rem', marginBottom: 0, fontWeight: 500 }}>
-                  {proj.tags.join(' · ')}
+                  {proj.tech}
                 </div>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginLeft: 32, minWidth: 120 }}>
@@ -171,30 +177,27 @@ const App: React.FC = () => {
             </div>
           ))}
         </div>
-        {/* System Design Section */}
-        <h2 style={{ fontWeight: 700, fontSize: '2rem', margin: '40px 0 18px 0' }}>System Design</h2>
-        <div style={{ display: 'flex', flexDirection: 'row', gap: 24, flexWrap: 'wrap' }}>
-          {systemDesigns.map((sys) => (
-            <div
-              key={sys.title}
-              style={{
-                background: '#23272f',
-                borderRadius: 16,
-                padding: '1.2rem 1.1rem',
-                minWidth: 260,
-                flex: 1,
-                boxShadow: '0 0 6px #0002',
-                marginBottom: 24,
-                maxWidth: 340,
-              }}
-            >
-              <div style={{ fontWeight: 700, fontSize: '1.1rem', marginBottom: 8 }}>{sys.title}</div>
-              <div style={{ color: '#eaeaea', fontSize: '1.05rem' }}>{sys.description}</div>
-            </div>
-          ))}
+        <div style={{ marginTop: 40, marginBottom: 70, textAlign: 'center' }}>
+          <Link to="/system-design" style={{ color: '#bada55', fontWeight: 700, fontSize: '1.25rem', textDecoration: 'underline' }}>
+            My Portfolio Site - Design
+          </Link>
+        </div>
+        <div style={{ marginTop: 0 }}>
+          {/* Hero (Let's Connect) will be rendered here by parent or route */}
         </div>
       </main>
     </div>
+  );
+}
+
+const App: React.FC = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/system-design" element={<SystemDesign />} />
+      </Routes>
+    </Router>
   );
 };
 

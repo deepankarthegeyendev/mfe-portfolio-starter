@@ -58,6 +58,17 @@
   color: #fff !important;
 }
 
+.project-card {
+  background: #e6f0fa;
+  box-shadow: 0 0 6px #0002;
+  transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+}
+.project-card:hover, .project-card:focus {
+  box-shadow: 0 6px 24px #0003;
+  background: #f7fbff;
+  outline: 2px solid #bada55;
+}
+
 .fixed-header {
   position: fixed;
   top: 0;
@@ -69,7 +80,8 @@
 
 /* Add top padding to main content to prevent it from hiding behind the fixed header */
 body, #root > div {
-  padding-top: 76px; /* Adjust if your header is taller/shorter */
+  padding-top: 76px;
+  background: #fff;
 }
 
 .hover-highlight {

@@ -1,64 +1,68 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import profile from '../assets/profile.jpg';
-import { FaEnvelope, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
-export default function Hero({ theme }) {
-  const isDark = theme === 'dark';
+export default function Hero() {
+  const navigate = useNavigate();
   return (
-    <div id="hero" className="text-center" style={{ marginTop: 0, paddingTop: 0, marginBottom: 24 }}>
-      <h1 style={{ fontWeight: 'bold', fontSize: '2.2rem', marginBottom: 0, color: isDark ? 'white' : '#222' }}>Deepan Karthegeyen</h1>
-      <div style={{ fontSize: '1.2rem', color: isDark ? '#bbb' : '#444' }}>A Full Stack Architect</div>
-      <hr style={{ borderTop: `3px solid #ffffff`, width: '60%', margin: '1rem auto' }} />
-      <style>{`
-        .hero-social-icon {
-          color: #bada55;
-          transition: background 0.2s;
-          border-radius: 8px;
-          padding: 0.2em 0.4em;
-        }
-        .hero-social-icon:hover {
-          background: rgba(25, 200, 155, 0.18);
-        }
-        .hero-viewwork-btn {
-          background: #19c89b;
-          color: white;
-          font-weight: 600;
-          font-size: 1.1rem;
-          border: none;
-          border-radius: 12px;
-          padding: 0.7rem 2rem;
-          margin-top: 18px;
-          cursor: pointer;
-          box-shadow: 0 2px 8px #0002;
-          display: inline-block;
-          transition: background 0.2s;
-        }
-        .hero-viewwork-btn:hover {
-          background: rgba(25, 200, 155, 0.82);
-        }
-      `}</style>
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', fontSize: '2rem', marginBottom: 0 }}>
-        <a href="contact" className="hero-social-icon hover-highlight" title="Contact" aria-label="Contact"><FaEnvelope /></a>
-        <a href="https://www.linkedin.com/in/deepankarthegeyen" target="_blank" rel="noopener noreferrer" className="hero-social-icon hover-highlight" title="LinkedIn" aria-label="LinkedIn"><FaLinkedin /></a>
-        <a href="https://github.com/deepankarthegeyendev" target="_blank" rel="noopener noreferrer" className="hero-social-icon hover-highlight" title="GitHub" aria-label="GitHub"><FaGithub /></a>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh', background: 'none' }}>
+      <div style={{
+        background: 'rgba(30,22,35,0.97)',
+        borderRadius: 20,
+        boxShadow: '0 2px 16px #0004',
+        padding: '2.5rem 2.5rem 2rem 2.5rem',
+        maxWidth: 520,
+        width: '100%',
+        textAlign: 'center',
+        color: '#fff',
+      }}>
+        <h2 style={{ fontWeight: 700, fontSize: '2.2rem', marginBottom: 12 }}>Let's Connect</h2>
+        <div style={{ color: '#e0e0e0', fontSize: '1.18rem', marginBottom: 32, fontWeight: 500, lineHeight: 1.4 }}>
+          I share .NET and Architecture tips on social media.<br />Follow me and let's connect.
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 56, marginBottom: 18 }}>
+          <a href="https://www.linkedin.com/in/deepankarthegeyen" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#bada55', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <FaLinkedin size={56} />
+            <span style={{ marginTop: 12, fontWeight: 500, color: '#fff', fontSize: '1.08rem' }}>LinkedIn</span>
+          </a>
+          <a href="https://github.com/deepankarthegeyen" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <FaGithub size={56} />
+            <span style={{ marginTop: 12, fontWeight: 500, color: '#fff', fontSize: '1.08rem' }}>GitHub</span>
+          </a>
+          <button
+            onClick={() => navigate('/contact')}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: '#fff',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              cursor: 'pointer',
+              outline: 'none',
+              textDecoration: 'none',
+            }}
+          >
+            <span style={{
+              display: 'inline-block',
+              width: 56,
+              height: 56,
+              borderRadius: '50%',
+              background: '#bada55',
+              color: '#222',
+              fontWeight: 700,
+              fontSize: 32,
+              lineHeight: '56px',
+              textAlign: 'center',
+              marginBottom: 0,
+            }}>@</span>
+            <span style={{ marginTop: 12, fontWeight: 500, color: '#fff', fontSize: '1.08rem' }}>Contact</span>
+          </button>
+        </div>
+        <div style={{ color: '#bbb', fontSize: '0.98rem', marginTop: 16 }}>
+          <span role="img" aria-label="lock">🔓</span> DM always open — feel free to say hi!
+        </div>
       </div>
-      {/* <a
-        href="projects"
-        className="btn hover-highlight"
-        style={{
-          backgroundColor: '#bada55',
-          color: '#222',
-          padding: '0.6rem 1.2rem',
-          borderRadius: '8px',
-          fontWeight: 'bold',
-          textDecoration: 'none',
-          fontSize: '1rem',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
-        }}
-      >
-        View My Work
-      </a> */}
     </div>
   );
 } 

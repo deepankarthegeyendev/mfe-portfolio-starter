@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="DK Logo">
+  <defs>
+    <linearGradient id="dkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00c3ff" />
+      <stop offset="100%" stop-color="#00ffb0" />
+    </linearGradient>
+  </defs>
+  <style>
+    .bg { fill: #111; }
+    .hex { fill: none; stroke: url(#dkGradient); stroke-width: 3; }
+    .text {
+      fill: url(#dkGradient);
+      font-family: 'Segoe UI', 'Roboto', sans-serif;
+      font-weight: 700;
+      font-size: 30px;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+  </style>
+
+  <rect class="bg" width="64" height="64" rx="12" />
+  <polygon class="hex" points="32,6 58,20 58,44 32,58 6,44 6,20" />
+  <text x="32" y="36" class="text">DK</text>
+</svg>

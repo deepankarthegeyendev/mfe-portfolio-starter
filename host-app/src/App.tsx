@@ -1,6 +1,5 @@
 import React from 'react';
 import { FaEnvelope, FaLinkedin, FaMedium, FaGlobe, FaGithub } from 'react-icons/fa';
-import profile from './assets/profile.jpg';
 
 const projects = [
   {
@@ -60,7 +59,7 @@ const App: React.FC = () => {
         }}
       >
         <img
-          src={profile}
+          //src={profile}
           alt="Profile"
           style={{ width: 64, height: 64, borderRadius: '50%', objectFit: 'cover', marginLeft: 32, border: '2px solid #bada55' }}
         />

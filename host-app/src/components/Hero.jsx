@@ -45,7 +45,7 @@ export default function Hero({ theme }) {
       </div>
       <br />
       <a
-        href="#projects"
+        href="projects"
         className="btn hover-highlight"
         style={{
           backgroundColor: '#bada55',

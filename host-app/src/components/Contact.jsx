@@ -113,6 +113,7 @@ export default function Contact({ theme }) {
                 type="text"
                 name="user_name"
                 placeholder="Enter your name"
+                required
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formEmail">
@@ -121,6 +122,7 @@ export default function Contact({ theme }) {
                 type="email"
                 name="user_email"
                 placeholder="Enter your email"
+                required
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formMessage">
@@ -130,6 +132,7 @@ export default function Contact({ theme }) {
                 name="message"
                 rows={5}
                 placeholder="Type your message here..."
+                required
               />
             </Form.Group>
             <Button

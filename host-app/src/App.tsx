@@ -194,7 +194,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/personal-website" element={<MainPage />} />
         <Route path="/system-design" element={<SystemDesign />} />
       </Routes>
     </Router>

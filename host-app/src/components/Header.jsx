@@ -41,7 +41,9 @@ export default function Header({ theme, onToggleTheme }) {
           />
         </Navbar.Brand>
         <Nav.Link
-          onClick={() => navigate("/")}
+          onClick={() => navigate(process.env.NODE_ENV === 'production'
+                  ? "/personal-website/"
+                  : "/")}
           style={{
             color: theme === "dark" ? "white" : "#222",
             display: "flex",

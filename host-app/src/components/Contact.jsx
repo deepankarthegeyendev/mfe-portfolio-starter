@@ -37,7 +37,17 @@ export default function Contact({ theme }) {
       )
       .then(
         (result) => {
-          alert("Message sent successfully!");
+          // 2. Send thank you email to the user
+          emailjs.send(
+            "service_vh0fb0q",
+            "template_vorlxk9", // Your thank you template ID
+            {
+              name: name,
+              email: email, // This will be used as the "To" in the template
+            },
+            "opNNg_TtfBfauxogB"
+          );
+          alert("Message sent successfully! Thank you!!!");
           e.target.reset();
         },
         (error) => {

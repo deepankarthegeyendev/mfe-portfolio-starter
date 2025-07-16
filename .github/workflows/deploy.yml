@@ -4,8 +4,14 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:  # Allows manual run
 
 jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Runner is working"
+
   deploy:
     runs-on: ubuntu-latest
 

@@ -75,9 +75,9 @@ export default function Header({ theme, onToggleTheme }) {
           >
             <FaEnvelope style={{ marginRight: 6 }} /> Contact
           </Nav.Link>
-          {/* <Nav.Link style={{ color: theme === 'dark' ? 'white' : '#222', display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={onToggleTheme}>
+          <Nav.Link style={{ color: theme === 'dark' ? 'white' : '#222', display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={onToggleTheme}>
             <FaMoon style={{ marginRight: 6 }} /> Theme
-          </Nav.Link> */}
+          </Nav.Link>
         </Nav>
       </Container>
     </Navbar>

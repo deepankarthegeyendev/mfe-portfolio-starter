@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import profile from "../assets/profile.jpg";
-import { FaFileAlt, FaEnvelope, FaMoon } from "react-icons/fa";
+import { FaSitemap, FaFileAlt, FaEnvelope, FaMoon } from "react-icons/fa";
 
 export default function Header({ theme, onToggleTheme }) {
   const navigate = useNavigate();
@@ -57,6 +57,16 @@ export default function Header({ theme, onToggleTheme }) {
           className="ms-auto align-items-center justify-content-end"
           style={{ gap: "0.5rem" }}
         >
+          <Nav.Link
+            onClick={() => navigate("/system-design")}
+            style={{
+              color: theme === "dark" ? "white" : "#222",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <FaSitemap style={{ marginRight: 6 }} /> Architecture
+          </Nav.Link>
           <Nav.Link
             onClick={() => navigate("/resume")}
             style={{

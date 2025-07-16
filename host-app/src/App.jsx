@@ -343,27 +343,7 @@ function LandingPage({ theme }) {
         </Row>
         <Row className="justify-content-center mb-3">
           <Col md={10} className="text-center">
-            <h2
-              style={{
-                fontSize: "2rem",
-                fontWeight: "bold",
-                color: "#bada55",
-                marginBottom: "2rem",
-                textAlign: "center",
-              }}
-            >
-              <Link
-                to="/system-design"
-                style={{ color: "#bada55", textDecoration: "underline" }}
-              >
-                My Portfolio Site - Design
-              </Link>
-            </h2>
-          </Col>
-        </Row>
-        <Row className="justify-content-center mb-3">
-          <Col md={10} className="text-center">
-            <Hero />
+            <Hero theme={theme} />
           </Col>
         </Row>
       </Container>

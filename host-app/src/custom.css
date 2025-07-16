@@ -91,4 +91,24 @@ body, #root > div {
   background: rgba(186, 218, 85, 0.2) !important;
   color: #bada55 !important;
   transform: scale(1.05);
+}
+
+/* Bounce animation for Hero icons */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-12px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  70% {
+    transform: translateY(-12px);
+  }
+}
+
+.hero-bounce:hover, .hero-bounce:focus {
+  animation: bounce 0.7s;
 } 

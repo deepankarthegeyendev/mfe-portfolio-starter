@@ -1,7 +1,8 @@
 import React from "react";
 import { Container, Col, Form, Button } from "react-bootstrap";
 import emailjs from "emailjs-com";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Contact({ theme }) {
   const isDark = theme === "dark";
@@ -14,11 +15,18 @@ export default function Contact({ theme }) {
   };
 
   const form = useRef();
+  const [showThankYou, setShowThankYou] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Get values from your form fields (using refs, state, or FormData)
+    const formElement = e.target;
+    if (!formElement.checkValidity()) {
+      formElement.reportValidity();
+      return;
+    }
     const name = e.target.user_name.value;
     const email = e.target.user_email.value;
     const message = e.target.message.value;
@@ -47,11 +55,16 @@ export default function Contact({ theme }) {
             },
             "opNNg_TtfBfauxogB"
           );
-          alert("Message sent successfully! Thank you!!!");
+          setShowThankYou(true);
+          setToastMessage("Message sent successfully! Thank you!!!");
+          setShowToast(true);
+          setTimeout(() => setShowToast(false), 4000);
           e.target.reset();
         },
         (error) => {
-          alert("Failed to send message, please try again.");
+          setToastMessage("Failed to send message, please try again.");
+          setShowToast(true);
+          setTimeout(() => setShowToast(false), 4000);
         }
       );
   };
@@ -60,8 +73,34 @@ export default function Contact({ theme }) {
     <div style={bodyStyle}>
       <Container
         className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "80vh" }}
+        style={{ minHeight: "80vh", position: "relative" }}
       >
+        {showToast && (
+          <div
+            style={{
+              position: "fixed",
+              top: 20,
+              left: 0,
+              right: 0,
+              zIndex: 9999,
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                background: "#bada55",
+                color: "#222",
+                padding: "1rem 2rem",
+                borderRadius: "8px",
+                boxShadow: "0 2px 8px #0002",
+                fontWeight: "bold",
+              }}
+            >
+              {toastMessage}
+            </div>
+          </div>
+        )}
         <Col
           md={6}
           style={{
@@ -73,12 +112,14 @@ export default function Contact({ theme }) {
           }}
         >
           <div className="text-center mb-3">
-            <h2
-              className="mb-0"
-              style={{ fontWeight: "bold", color: isDark ? "white" : "#222" }}
-            >
-              Contact Me
-            </h2>
+            {!showThankYou && (
+              <h2
+                className="mb-0"
+                style={{ fontWeight: "bold", color: isDark ? "white" : "#222" }}
+              >
+                Contact Me
+              </h2>
+            )}
           </div>
           <div
             className="text-center mb-3"
@@ -106,48 +147,78 @@ export default function Contact({ theme }) {
               margin: "0 auto 2rem auto",
             }}
           />
-          <Form ref={form} onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formName">
-              <Form.Label>Name:</Form.Label>
-              <Form.Control
-                type="text"
-                name="user_name"
-                placeholder="Enter your name"
-                required
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formEmail">
-              <Form.Label>Your Email:</Form.Label>
-              <Form.Control
-                type="email"
-                name="user_email"
-                placeholder="Enter your email"
-                required
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formMessage">
-              <Form.Label>Message:</Form.Label>
-              <Form.Control
-                as="textarea"
-                name="message"
-                rows={5}
-                placeholder="Type your message here..."
-                required
-              />
-            </Form.Group>
-            <Button
-              type="submit"
+          {!showThankYou ? (
+            <Form ref={form} onSubmit={handleSubmit}>
+              <Form.Group className="mb-3" controlId="formName">
+                <Form.Label>Name:</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="user_name"
+                  placeholder="Enter your name"
+                  required
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formEmail">
+                <Form.Label>Your Email:</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="user_email"
+                  placeholder="Enter your email"
+                  required
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formMessage">
+                <Form.Label>Message:</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  name="message"
+                  rows={5}
+                  placeholder="Type your message here..."
+                  required
+                />
+              </Form.Group>
+              <Button
+                type="submit"
+                style={{
+                  background: "#bada55",
+                  border: "none",
+                  color: "#222",
+                  width: "100%",
+                  fontWeight: "bold",
+                }}
+              >
+                Submit
+              </Button>
+            </Form>
+          ) : (
+            <div
               style={{
-                background: "#bada55",
-                border: "none",
-                color: "#222",
-                width: "100%",
+                textAlign: "center",
+                padding: "2rem 0",
+                color: isDark ? "#bada55" : "#222",
                 fontWeight: "bold",
+                fontSize: "1.3rem",
               }}
             >
-              Submit
-            </Button>
-          </Form>
+              Thank you for contacting me!<br />
+              Keep visiting my site next time.
+              <div style={{ marginTop: "2rem" }}>
+                <Button
+                  style={{
+                    background: "#bada55",
+                    border: "none",
+                    color: "#222",
+                    fontWeight: "bold",
+                    padding: "0.5rem 2rem",
+                    borderRadius: "8px",
+                  }}
+                  onClick={() => navigate("/")}
+                >
+                  Close
+                </Button>
+              </div>
+            </div>
+          )}
         </Col>
       </Container>
     </div>

@@ -228,7 +228,7 @@ function ResumePage({ theme }) {
                   style={{ color: linkColor, fontSize: "1rem", marginTop: 4 }}
                 >
                   <a
-                    href="https://deepankarthegeyen.github.io/personal-website/"
+                    href="https://www.deepankarthegeyen.dev/"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
@@ -407,7 +407,7 @@ function App() {
             <Route
               path={
                 process.env.NODE_ENV === "production"
-                  ? "/personal-website/"
+                  ? "/"
                   : "/"
               }
               element={<LandingPage theme={theme} />}

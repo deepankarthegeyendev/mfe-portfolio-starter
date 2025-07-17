@@ -1,6 +1,5 @@
 import React from 'react';
 import { FaEnvelope, FaLinkedin, FaMedium, FaGlobe, FaGithub } from 'react-icons/fa';
-import profile from './assets/profile.jpg';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import SystemDesign from './SystemDesign';
 
@@ -194,7 +193,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/personal-website" element={<MainPage />} />
+        <Route path="/" element={<MainPage />} />
         <Route path="/system-design" element={<SystemDesign />} />
       </Routes>
     </Router>

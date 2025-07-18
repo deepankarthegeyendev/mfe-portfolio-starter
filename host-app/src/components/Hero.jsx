@@ -58,16 +58,20 @@ export default function Hero({ theme, onOpenContact, fabPos, onFabMove }) {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh', background: 'none', position: 'relative' }}>
-      <div style={{
-        background: panelBg,
-        borderRadius: 20,
-        boxShadow: '0 2px 16px #0004',
-        padding: '2.5rem 2.5rem 2rem 2.5rem',
-        maxWidth: 520,
-        width: '100%',
-        textAlign: 'center',
-        color: isDark ? '#fff' : '#222',
-      }}>
+      <div
+        className="lets-connect-panel zoom-hover"
+        style={{
+          background: panelBg,
+          borderRadius: 20,
+          boxShadow: '0 2px 16px #0004',
+          padding: '2.5rem 2.5rem 2rem 2.5rem',
+          maxWidth: 520,
+          width: '100%',
+          textAlign: 'center',
+          color: isDark ? '#fff' : '#222',
+          transition: 'transform 0.25s cubic-bezier(.4,1.6,.6,1), box-shadow 0.25s',
+        }}
+      >
         <h2 style={{ fontWeight: 700, fontSize: '2.2rem', marginBottom: 12 }}>Let's Connect</h2>
         <div style={{ color: isDark ? '#e0e0e0' : '#444', fontSize: '1.18rem', marginBottom: 32, fontWeight: 500, lineHeight: 1.4 }}>
           I share .NET and Architecture tips on social media.<br />Follow me and let's connect.
@@ -88,7 +92,7 @@ export default function Hero({ theme, onOpenContact, fabPos, onFabMove }) {
       </div>
       {/* Draggable Floating Contact Button */}
       <button
-        className="contact-fab"
+        className="contact-fab zoom-hover"
         onClick={onOpenContact}
         aria-label="Open contact sidebar"
         style={{
@@ -121,6 +125,13 @@ export default function Hero({ theme, onOpenContact, fabPos, onFabMove }) {
         }
         .contact-fab:hover {
           background: #a0c944;
+        }
+        .zoom-hover {
+          transition: transform 0.25s cubic-bezier(.4,1.6,.6,1), box-shadow 0.25s;
+        }
+        .zoom-hover:hover {
+          transform: scale(1.12);
+          box-shadow: 0 6px 32px #0003;
         }
         @media (max-width: 600px) {
           .contact-fab {

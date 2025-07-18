@@ -51,7 +51,7 @@ export default function Projects({ theme }) {
               href="https://tourist-explorer.example.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="project-btn-vertical"
+              className="project-btn-vertical project-bounce"
               style={{ textDecoration: 'none' }}
             >
               Website
@@ -60,7 +60,7 @@ export default function Projects({ theme }) {
               href="https://github.com/deepankarthegeyen/tourist-explorer"
               target="_blank"
               rel="noopener noreferrer"
-              className="project-btn-vertical"
+              className="project-btn-vertical project-bounce"
               style={{ textDecoration: 'none' }}
             >
               <FaGithub style={{ marginRight: 6, fontSize: '1.1rem' }} />GitHub
@@ -107,7 +107,7 @@ export default function Projects({ theme }) {
               href="https://resumegpt.example.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="project-btn-vertical"
+              className="project-btn-vertical project-bounce"
               style={{ textDecoration: 'none' }}
             >
               Website
@@ -116,7 +116,7 @@ export default function Projects({ theme }) {
               href="https://github.com/deepankarthegeyen/resumegpt"
               target="_blank"
               rel="noopener noreferrer"
-              className="project-btn-vertical"
+              className="project-btn-vertical project-bounce"
               style={{ textDecoration: 'none' }}
             >
               <FaGithub style={{ marginRight: 6, fontSize: '1.1rem' }} />GitHub
@@ -124,6 +124,15 @@ export default function Projects({ theme }) {
           </div>
         </div>
       </div>
+      <style>{`
+        .project-bounce {
+          transition: transform 0.18s cubic-bezier(.4,1.6,.6,1);
+        }
+        .project-bounce:hover {
+          transform: translateY(-7px) scale(1.07);
+          box-shadow: 0 4px 18px #0002;
+        }
+      `}</style>
     </div>
   );
 } 

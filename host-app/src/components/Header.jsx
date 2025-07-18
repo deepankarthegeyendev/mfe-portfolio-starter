@@ -77,16 +77,6 @@ export default function Header({ theme, onToggleTheme }) {
           >
             <FaFileAlt style={{ marginRight: 6 }} /> Resume
           </Nav.Link>
-          <Nav.Link
-            onClick={() => navigate("/contact")}
-            style={{
-              color: theme === "dark" ? "white" : "#222",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <FaEnvelope style={{ marginRight: 6 }} /> Contact
-          </Nav.Link>
           <Nav.Link style={{ color: theme === 'dark' ? 'white' : '#222', display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={onToggleTheme}>
             <FaMoon style={{ marginRight: 6 }} /> Theme
           </Nav.Link>

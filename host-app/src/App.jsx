@@ -319,7 +319,7 @@ function ResumePage({ theme }) {
   );
 }
 
-function LandingPage({ theme }) {
+function LandingPage({ theme, onOpenContact, fabPos, onFabMove }) {
   const isDark = theme === "dark";
   const panel1Bg = isDark ? "#46605a" : "#e6f0fa";
   const panel2Bg = isDark ? "#7a5fa0" : "#f5e6fa";
@@ -343,7 +343,7 @@ function LandingPage({ theme }) {
         </Row>
         <Row className="justify-content-center mb-3">
           <Col md={10} className="text-center">
-            <Hero theme={theme} />
+            <Hero theme={theme} onOpenContact={onOpenContact} fabPos={fabPos} onFabMove={onFabMove} />
           </Col>
         </Row>
       </Container>
@@ -385,8 +385,21 @@ function AppFooter({ theme }) {
 
 function App() {
   const [theme, setTheme] = useState("dark");
+  const [openContact, setOpenContact] = useState(false);
+  const [contactSide, setContactSide] = useState('right'); // 'left' or 'right'
+  const [fabPos, setFabPos] = useState({ x: window.innerWidth - 96, y: window.innerHeight - 120 });
   const isDark = theme === "dark";
   const toggleTheme = () => setTheme(isDark ? "light" : "dark");
+
+  // Called by Hero when @ icon is clicked
+  const handleOpenContact = () => {
+    // Open from left if icon is on left half, else right
+    const side = fabPos.x < window.innerWidth / 2 ? 'left' : 'right';
+    setContactSide(side);
+    setOpenContact((prev) => !prev);
+  };
+
+  const handleFabMove = (pos) => setFabPos(pos);
 
   const bodyStyle = {
     background: isDark ? "#23182a" : "#f7f7fa",
@@ -410,11 +423,11 @@ function App() {
                   ? "/"
                   : "/"
               }
-              element={<LandingPage theme={theme} />}
+              element={<LandingPage theme={theme} onOpenContact={handleOpenContact} fabPos={fabPos} onFabMove={handleFabMove} />}
             />
-            <Route path="/contact" element={<Contact theme={theme} />} />
             <Route path="/resume" element={<ResumePage theme={theme} />} />
           </Routes>
+          <Contact open={openContact} onClose={() => setOpenContact(false)} theme={theme} fabPos={fabPos} />
         </div>
         <Footer theme={theme} />
       </Router>

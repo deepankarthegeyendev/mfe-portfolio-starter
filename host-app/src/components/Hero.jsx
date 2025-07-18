@@ -1,13 +1,63 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-export default function Hero({ theme }) {
+export default function Hero({ theme, onOpenContact, fabPos, onFabMove }) {
   const navigate = useNavigate();
   const isDark = theme === 'dark';
   const panelBg = isDark ? '#46605a' : '#e6f0fa';
+
+  // Draggable FAB state (lifted to App)
+  const [dragging, setDragging] = useState(false);
+  const dragOffset = useRef({ x: 0, y: 0 });
+
+  // Mouse/touch handlers
+  const onDragStart = (e) => {
+    setDragging(true);
+    const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+    dragOffset.current = {
+      x: clientX - fabPos.x,
+      y: clientY - fabPos.y,
+    };
+    e.stopPropagation();
+  };
+  const onDrag = (e) => {
+    if (!dragging) return;
+    const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+    let newX = clientX - dragOffset.current.x;
+    let newY = clientY - dragOffset.current.y;
+    // Keep within window bounds
+    const btnSize = 64;
+    newX = Math.max(8, Math.min(window.innerWidth - btnSize - 8, newX));
+    newY = Math.max(8, Math.min(window.innerHeight - btnSize - 8, newY));
+    onFabMove({ x: newX, y: newY });
+  };
+  const onDragEnd = () => setDragging(false);
+
+  React.useEffect(() => {
+    if (dragging) {
+      window.addEventListener('mousemove', onDrag);
+      window.addEventListener('mouseup', onDragEnd);
+      window.addEventListener('touchmove', onDrag);
+      window.addEventListener('touchend', onDragEnd);
+    } else {
+      window.removeEventListener('mousemove', onDrag);
+      window.removeEventListener('mouseup', onDragEnd);
+      window.removeEventListener('touchmove', onDrag);
+      window.removeEventListener('touchend', onDragEnd);
+    }
+    return () => {
+      window.removeEventListener('mousemove', onDrag);
+      window.removeEventListener('mouseup', onDragEnd);
+      window.removeEventListener('touchmove', onDrag);
+      window.removeEventListener('touchend', onDragEnd);
+    };
+  }, [dragging, fabPos]);
+
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh', background: 'none' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh', background: 'none', position: 'relative' }}>
       <div style={{
         background: panelBg,
         borderRadius: 20,
@@ -31,41 +81,55 @@ export default function Hero({ theme }) {
             <FaGithub size={56} />
             <span style={{ marginTop: 12, fontWeight: 500, color: isDark ? '#fff' : '#222', fontSize: '1.08rem' }}>GitHub</span>
           </a>
-          <button
-            onClick={() => navigate('/contact')}
-            className="hero-bounce"
-            style={{
-              background: 'none',
-              border: 'none',
-              color: isDark ? '#fff' : '#222',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              cursor: 'pointer',
-              outline: 'none',
-              textDecoration: 'none',
-            }}
-          >
-            <span style={{
-              display: 'inline-block',
-              width: 56,
-              height: 56,
-              borderRadius: '50%',
-              background: '#bada55',
-              color: '#222',
-              fontWeight: 700,
-              fontSize: 32,
-              lineHeight: '56px',
-              textAlign: 'center',
-              marginBottom: 0,
-            }}>@</span>
-            <span style={{ marginTop: 12, fontWeight: 500, color: isDark ? '#fff' : '#222', fontSize: '1.08rem' }}>Contact</span>
-          </button>
         </div>
         <div style={{ color: '#bbb', fontSize: '0.98rem', marginTop: 16 }}>
           <span role="img" aria-label="lock">🔓</span> DM always open — feel free to say hi!
         </div>
       </div>
+      {/* Draggable Floating Contact Button */}
+      <button
+        className="contact-fab"
+        onClick={onOpenContact}
+        aria-label="Open contact sidebar"
+        style={{
+          left: fabPos.x,
+          top: fabPos.y,
+          position: 'fixed',
+          zIndex: 2000,
+          touchAction: 'none',
+          cursor: dragging ? 'grabbing' : 'grab',
+        }}
+        onMouseDown={onDragStart}
+        onTouchStart={onDragStart}
+      >
+        <span style={{ fontSize: 28, fontWeight: 700 }}>@</span>
+      </button>
+      <style>{`
+        .contact-fab {
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          background: #bada55;
+          color: #222;
+          border: none;
+          box-shadow: 0 2px 16px #0003;
+          font-size: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background 0.2s;
+        }
+        .contact-fab:hover {
+          background: #a0c944;
+        }
+        @media (max-width: 600px) {
+          .contact-fab {
+            width: 54px;
+            height: 54px;
+            font-size: 1.5rem;
+          }
+        }
+      `}</style>
     </div>
   );
 } 

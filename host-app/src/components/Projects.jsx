@@ -18,7 +18,7 @@ export default function Projects({ theme }) {
           tabIndex={0}
           aria-label="Open Tourist Explorer website"
           onClick={() => window.open('https://tourist-explorer.example.com', '_blank', 'noopener noreferrer')}
-          onKeyPress={e => { if (e.key === 'Enter') window.open('https://tourist-explorer.example.com', '_blank', 'noopener noreferrer'); }}
+          onKeyDown={e => { if (e.key === 'Enter') window.open('https://tourist-explorer.example.com', '_blank', 'noopener noreferrer'); }}
           style={{
             display: 'flex',
             flexDirection: 'row',
@@ -52,6 +52,7 @@ export default function Projects({ theme }) {
               target="_blank"
               rel="noopener noreferrer"
               className="project-btn-vertical"
+              style={{ textDecoration: 'none' }}
             >
               Website
             </a>
@@ -60,8 +61,9 @@ export default function Projects({ theme }) {
               target="_blank"
               rel="noopener noreferrer"
               className="project-btn-vertical"
+              style={{ textDecoration: 'none' }}
             >
-              <FaGithub style={{ marginRight: 6, fontSize: '1.1rem' }} /> GitHub
+              <FaGithub style={{ marginRight: 6, fontSize: '1.1rem' }} />GitHub
             </a>
           </div>
         </div>
@@ -72,7 +74,7 @@ export default function Projects({ theme }) {
           tabIndex={0}
           aria-label="Open ResumeGPT website"
           onClick={() => window.open('https://resumegpt.example.com', '_blank', 'noopener noreferrer')}
-          onKeyPress={e => { if (e.key === 'Enter') window.open('https://resumegpt.example.com', '_blank', 'noopener noreferrer'); }}
+          onKeyDown={e => { if (e.key === 'Enter') window.open('https://resumegpt.example.com', '_blank', 'noopener noreferrer'); }}
           style={{
             display: 'flex',
             flexDirection: 'row',
@@ -97,7 +99,7 @@ export default function Projects({ theme }) {
               A lightweight AI-powered tool that helps users generate and improve resumes based on job descriptions.
             </div>
             <div style={{ color: tagColor, fontSize: '0.98rem' }}>
-              React &nbsp;·&nbsp; OpenAI API &nbsp;·&nbsp; Vite &nbsp;·&nbsp; Chakra UI
+              React &nbsp;·&nbsp; OpenAI API &nbsp;·&nbsp; Vite
             </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginLeft: 24, minWidth: 110 }}>
@@ -106,6 +108,7 @@ export default function Projects({ theme }) {
               target="_blank"
               rel="noopener noreferrer"
               className="project-btn-vertical"
+              style={{ textDecoration: 'none' }}
             >
               Website
             </a>
@@ -114,8 +117,9 @@ export default function Projects({ theme }) {
               target="_blank"
               rel="noopener noreferrer"
               className="project-btn-vertical"
+              style={{ textDecoration: 'none' }}
             >
-              <FaGithub style={{ marginRight: 6, fontSize: '1.1rem' }} /> GitHub
+              <FaGithub style={{ marginRight: 6, fontSize: '1.1rem' }} />GitHub
             </a>
           </div>
         </div>

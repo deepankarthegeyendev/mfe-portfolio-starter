@@ -23,18 +23,14 @@ jobs:
         run: npm install
         working-directory: host-app
 
-      - name: Build
+      - name: Build project
         run: npm run build
         working-directory: host-app
 
-      - name: List dist files
-        run: ls -la
-        working-directory: host-app/dist
-
-      - name: Deploy to S3
+      - name: Upload all files to S3 (except index.html)
         uses: jakejarvis/s3-sync-action@v0.5.1
         with:
-          args: --delete
+          args: --delete --exclude "index.html"
         env:
           AWS_S3_BUCKET: ${{ secrets.S3_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -42,3 +38,15 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           SOURCE_DIR: host-app/dist
           DEST_DIR: /
+
+      - name: Upload index.html separately with cache headers
+        run: |
+          aws s3 cp host-app/dist/index.html s3://$S3_BUCKET/index.html \
+            --cache-control "no-cache, no-store, must-revalidate" \
+            --content-type "text/html"
+        env:
+          AWS_S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}

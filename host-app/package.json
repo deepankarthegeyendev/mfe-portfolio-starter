@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "deploy": "npm run build && aws s3 sync dist/ s3://my-portfolio-deepan/ --delete",
+    "deploy": "npm run build && aws s3 sync dist/ s3: //my-portfolio-deepan/ --delete --cache-control 'max-age=0, no-cache, no-store, must-revalidate'",
     "preview": "vite preview"
   },
   "dependencies": {

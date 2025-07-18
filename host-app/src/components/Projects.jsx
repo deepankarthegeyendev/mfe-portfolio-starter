@@ -99,7 +99,7 @@ export default function Projects({ theme }) {
               A lightweight AI-powered tool that helps users generate and improve resumes based on job descriptions.
             </div>
             <div style={{ color: tagColor, fontSize: '0.98rem' }}>
-              React &nbsp;·&nbsp; OpenAI API &nbsp;·&nbsp; Vite
+              React &nbsp;·&nbsp; OpenAI API &nbsp;·&nbsp; .NET Core
             </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginLeft: 24, minWidth: 110 }}>

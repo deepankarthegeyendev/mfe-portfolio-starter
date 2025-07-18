@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function SystemDesign() {
   return (
-    <div style={{ maxWidth: 800, margin: '40px auto', padding: '2rem', background: '#fff', borderRadius: 16, boxShadow: '0 2px 16px #0001' }}>
+    <div className="system-design-content" style={{ maxWidth: 900, margin: '40px auto', padding: '2.5rem', background: '#fff', color: '#222', borderRadius: 24, boxShadow: '0 2px 16px #0001' }}>
       <h1 style={{ fontWeight: 700, fontSize: '2.2rem', color: '#222', marginBottom: 24 }}>System Design</h1>
       <div style={{ marginBottom: 32, textAlign: 'center', color: '#888' }}>
         <div style={{
@@ -15,6 +15,7 @@ export default function SystemDesign() {
           alignItems: 'center',
           justifyContent: 'center',
           fontSize: '1.2rem',
+          color: '#888',
         }}>
           [ Architecture Diagram Placeholder ]
         </div>

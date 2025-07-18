@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaRegCopyright } from "react-icons/fa";
 import profile from "./assets/profile.jpg";
+import SystemDesign from "./components/SystemDesign";
 
 const resumeData = {
   name: "Deepan Karthegeyen A",
@@ -426,6 +427,7 @@ function App() {
               element={<LandingPage theme={theme} onOpenContact={handleOpenContact} fabPos={fabPos} onFabMove={handleFabMove} />}
             />
             <Route path="/resume" element={<ResumePage theme={theme} />} />
+            <Route path="/system-design" element={<SystemDesign theme={theme} />} />
           </Routes>
           <Contact open={openContact} onClose={() => setOpenContact(false)} theme={theme} fabPos={fabPos} />
         </div>

@@ -45,7 +45,7 @@ const socialLinks = [
 
 function MainPage() {
   return (
-    <div style={{ background: '#fff', minHeight: '100vh', color: '#222', fontFamily: 'Inter, Arial, sans-serif' }}>
+    <div style={{ background: '#23182a', minHeight: '100vh', color: 'white', fontFamily: 'Inter, Arial, sans-serif' }}>
       {/* Fixed Header */}
       <header
         style={{

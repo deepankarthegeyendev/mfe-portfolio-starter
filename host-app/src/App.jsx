@@ -7,24 +7,24 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaRegCopyright } from "react-icons/fa";
-import profile from "./assets/profile.jpg";
+import logo from "./assets/dk-logo.svg";
 import SystemDesign from "./components/SystemDesign";
 
 const resumeData = {
   name: "Deepan Karthegeyen A",
-  title: "Software Architect",
+  title: "Software Architect | Expert in Full Stack Development & Cloud Architecture",
   contact: {
     phone: "9790912033",
     email: "deepan_31@yahoo.co.in",
     location: "Chennai",
     links: [
       {
-        label: "deepankarthegeyen",
-        url: "https://github.com/deepankarthegeyen",
+        label: "deepankarthegeyendev",
+        url: "https://github.com/deepankarthegeyendev",
       },
     ],
   },
-  summary: `Software Architect with 14+ years of experience in designing scalable, cloud-native,\nand offline-first systems. Skilled in distributed architectures, cross-functional\nleadership, and delivering cost-effective enterprise solutions. Currently exploring\nGenAI, Agentic AI driving innovation in modern platforms.`,
+  summary: `Software Architect with 14+ years of experience in designing scalable, cloud-native, and offline-first systems. Skilled in distributed architectures, cross-functional leadership, and delivering cost-effective enterprise solutions. Currently exploring GenAI, Agentic AI driving innovation in modern platforms.`,
   experience: [
     {
       title: "Technical Lead, Infoservices India, Chennai",
@@ -73,248 +73,129 @@ const resumeData = {
       date: "2005 - 2009",
     },
   ],
-  skills: [
-    { label: "Problem Solving", level: "Expert" },
-    { label: "API Development", level: "Expert" },
-    { label: "System Design", level: "Skillful" },
-    { label: "Cloud Computing", level: "Experienced" },
+  skillsFormatted: [
+    {
+      category: "Front-end",
+      technologies: ["Angular (Expert)", "JavaScript (Proficient)", "jQuery (Proficient)"]
+    },
+    {
+      category: "Back-end",
+      technologies: ["C# 8", ".NET Core (Expert)", "ASP.NET (Expert)"]
+    },
+    {
+      category: "Databases",
+      technologies: ["MS SQL (Expert)", "PostgreSQL"]
+    },
+    {
+      category: "Cloud Platforms",
+      technologies: ["AWS (S3, Lambda, SNS, SQS, Cognito, RDS, DMS)"]
+    },
+    {
+      category: "DevOps",
+      technologies: ["Docker (Intermediate)"]
+    },
+    {
+      category: "Security",
+      technologies: ["Fedlet SSO (Expert)", "Google SSO", "AWS Cognito", "JWT (Expert)"]
+    },
+    {
+      category: "Other Skills",
+      technologies: ["LINQ", "Entity Framework Core", "Dapper"]
+    },
+    {
+      category: "Architectural Design",
+      technologies: ["Micro-Frontend", "Microservices (Intermediate)", "RESTful APIs (Expert)"]
+    },
   ],
   languages: ["Tamil", "English"],
-  projects: [
-    {
-      title:
-        "Offline-First Data Sync Solution with PowerSync, PostgreSQL & AWS",
-      date: "November 2024 -",
-      details: [
-        "Architected and implemented an offline-first data sync system using Power Sync-, PostgreSQL, AWS DMS, Mobile App using React Native ensuring seamless connectivity.",
-        "Designed bi-directional sync strategies and local storage schema, enabling resilient mobile/web experiences with real-time replication to AWS RDS.",
-      ],
-    },
-    {
-      title: "InterviewIQ – AI-Powered Interview Platform",
-      details: [
-        "Developed a GenAI interview assistant using Python, WebRTC, OpenAI GPT-4o, and .NET APIs, deployed via Lambda and DynamoDB.",
-        "Enabled real-time STT/TTS voice interaction and video recording with cheat detection via client-side streaming.",
-        "Used Cognito for secure identity, S3 for file storage, and React/Next.js as the front end.",
-      ],
-    },
-    {
-      title: "Tires Modernization | Retail | US & Canada",
-      date: "June 2022 - Now",
-      details: [
-        "Architected and led a team of 11 engineers to modernize legacy AS400 systems into a scalable solution using .NET 8, Angular 14, MS SQL, and CosmosDB.",
-        "Developed and maintained Angular micro-frontend applications with corresponding .NET-based microservices, orchestrated using Single-SPA.",
-        "Oversaw development workflows, conducted code reviews, mentored junior developers, and authored HLD/LLD ensure consistent delivery and code quality.",
-      ],
-    },
-    {
-      title: "Employee Self Service | HCM | India, SEA & APAC",
-      date: "November 2011 - August 2021",
-      details: [
-        "Led the modernization of HR modules (Flexi, Leave, IDP, Rewards & Exit) across APAC by transforming a monolithic system into a Modular Monolith, improving scalability and maintainability.",
-        "Integrated Elasticsearch for real-time search and analytics, and implemented infrastructure optimizations including ELB sticky sessions, HAProxy, NAS storage, and DB replication.",
-        "Conducted code reviews and enforced automated unit testing standards using nUnit for .NET and Jasmine for Angular.",
-      ],
-    },
-  ],
-};
-
-const skillLevelMap = {
-  Expert: 100,
-  Experienced: 80,
-  Skillful: 60,
-  Proficient: 50,
-  Familiar: 30,
 };
 
 function ResumePage({ theme }) {
   const isDark = theme === "dark";
+
   const bodyStyle = {
-    background: isDark ? "#23182a" : "#f7f7fa",
-    minHeight: "100vh",
-    color: isDark ? "white" : "#222",
-    transition: "background 0.3s, color 0.3s",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-  };
-  const linkColor = "#222";
-  const cardStyle = {
     background: "white",
     color: "#222",
-    borderRadius: 16,
-    boxShadow: "0 2px 16px #0002",
-    padding: "2.5rem 2rem",
-    width: "100%",
-    margin: "2rem 0",
-    height: "auto",
-    alignSelf: "flex-start",
-    display: "block",
+    minHeight: "100vh",
+    padding: "2rem 1rem",
+    fontFamily: "Segoe UI, sans-serif",
+    marginTop: '-73px',
+    marginBottom: '-30px',
   };
+
+  const sectionStyle = {
+    maxWidth: 1100,
+    margin: "0 auto",
+  };
+
+  const sectionHeader = {
+    fontWeight: "bold",
+    fontSize: "1.5rem",
+    marginBottom: "1rem",
+  };
+
   return (
     <div style={bodyStyle}>
-      <div className="container-fluid" style={{ maxWidth: 1400 }}>
-        <div className="row" style={{ gap: 0, alignItems: "flex-start" }}>
-          {/* Left Panel: Skills & Languages */}
-          <div
-            className="col-12 col-md-3 d-block mb-4 mb-md-0"
-            style={{ paddingRight: 0 }}
-          >
-            <div
-              style={{
-                ...cardStyle,
-                minWidth: 260,
-                maxWidth: 340,
-                margin: "2rem 0 2rem 0",
-              }}
-            >
-              <div className="mb-4">
-                <h6 style={{ fontWeight: "bold" }}>SKILLS</h6>
-                <ul
-                  style={{ marginBottom: 0, listStyle: "none", paddingLeft: 0 }}
-                >
-                  {resumeData.skills.map((s, i) => (
-                    <li key={i} style={{ marginBottom: 18 }}>
-                      <div style={{ fontWeight: "bold", marginBottom: 4 }}>
-                        {s.label}
-                      </div>
-                      <div
-                        style={{
-                          background: "#e9ecef",
-                          borderRadius: 8,
-                          height: 10,
-                          width: "100%",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: `${skillLevelMap[s.level] || 40}%`,
-                            height: 10,
-                            background: "#bada55",
-                            borderRadius: 8,
-                          }}
-                        />
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mb-4">
-                <h6 style={{ fontWeight: "bold" }}>LANGUAGES</h6>
-                <ul style={{ marginBottom: 0 }}>
-                  {resumeData.languages.map((l, i) => (
-                    <li key={i}>{l}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-          {/* Right Panel: Main Resume Content */}
-          <div className="col-12 col-md-8 d-flex justify-content-center">
-            <div style={cardStyle}>
-              <div className="text-center mb-4">
-                <img
-                  src={profile}
-                  alt="Profile"
-                  width={72}
-                  height={72}
-                  className="rounded-circle mb-2"
-                  style={{ objectFit: "cover", border: "2px solid #bada55" }}
-                />
-                <h2 style={{ fontWeight: "bold", marginBottom: 0 }}>
-                  {resumeData.name}
-                </h2>
-                <div
-                  style={{ color: linkColor, fontSize: "1rem", marginTop: 4 }}
-                >
-                  <a
-                    href="https://www.deepankarthegeyen.dev/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      color: linkColor,
-                      textDecoration: "underline",
-                      fontWeight: "bold",
-                      marginRight: 12,
-                    }}
-                  >
-                    deepankarthegeyen
-                  </a>
-                  <span style={{ color: "#888", margin: "0 8px" }}>|</span>
-                  <a
-                    href="mailto:deepan_31@yahoo.co.in"
-                    style={{
-                      color: linkColor,
-                      textDecoration: "underline",
-                      fontWeight: "bold",
-                      marginLeft: 12,
-                    }}
-                  >
-                    deepan_31@yahoo.co.in
-                  </a>
-                </div>
-              </div>
-              <div
-                className="mb-4"
-                style={{
-                  fontSize: "1.1rem",
-                  lineHeight: 1.7,
-                  textAlign: "justify",
-                }}
-              >
-                {resumeData.summary}
-              </div>
-              <div className="mb-4">
-                <h5 style={{ fontWeight: "bold" }}>EXPERIENCE</h5>
-                {resumeData.experience.map((exp, i) => (
-                  <div key={i} className="mb-3">
-                    <div style={{ fontWeight: "bold" }}>
-                      {exp.title}{" "}
-                      <span style={{ color: "#666", fontWeight: "normal" }}>
-                        | {exp.date}
-                      </span>
-                    </div>
-                    <ul style={{ marginBottom: 0 }}>
-                      {exp.details.map((d, j) => (
-                        <li key={j}>{d}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-              <div className="mb-4">
-                <h5 style={{ fontWeight: "bold" }}>EDUCATION</h5>
-                {resumeData.education.map((edu, i) => (
-                  <div key={i}>
-                    {edu.degree}{" "}
-                    <span style={{ color: "#666" }}>| {edu.date}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="mb-4">
-                <h5 style={{ fontWeight: "bold" }}>PROJECTS</h5>
-                {resumeData.projects.map((proj, i) => (
-                  <div key={i} className="mb-3">
-                    <div style={{ fontWeight: "bold" }}>
-                      {proj.title}{" "}
-                      {proj.date && (
-                        <span style={{ color: "#666", fontWeight: "normal" }}>
-                          | {proj.date}
-                        </span>
-                      )}
-                    </div>
-                    <ul style={{ marginBottom: 0 }}>
-                      {proj.details.map((d, j) => (
-                        <li key={j}>{d}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+      <div style={sectionStyle}>
+        <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+          <img
+            src={logo}
+            alt="Profile"
+            width={80}
+            height={80}
+            className="rounded-circle"
+            style={{ objectFit: "cover", borderRadius: "50%" }}
+          />
+          <h2 style={{ margin: "0.5rem 0" }}>{resumeData.name}</h2>
+          <p>{resumeData.title}</p>
+          <p>
+            <a href={resumeData.contact.links[0].url} target="_blank" rel="noopener noreferrer">
+              {resumeData.contact.links[0].label}
+            </a>
+            {" | "}
+            <a href={`mailto:${resumeData.contact.email}`}>{resumeData.contact.email}</a>
+          </p>
         </div>
+
+        <section style={{ marginBottom: "2rem" }}>
+          <div style={sectionHeader}>Summary</div>
+          <p style={{ lineHeight: 1.7 }}>{resumeData.summary}</p>
+        </section>
+
+        <section style={{ marginBottom: "2rem" }}>
+          <div style={sectionHeader}>Skills</div>
+          <ul style={{ paddingLeft: "1rem" }}>
+            {resumeData.skillsFormatted.map((skill, index) => (
+              <li key={index} style={{ marginBottom: "1rem" }}>
+                <strong>{skill.category}:</strong> {skill.technologies.join(", ")}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section style={{ marginBottom: "2rem" }}>
+          <div style={sectionHeader}>Experience</div>
+          {resumeData.experience.map((exp, i) => (
+            <div key={i} style={{ marginBottom: "1.5rem" }}>
+              <strong>{exp.title}</strong>
+              <div style={{ color: "#777" }}>{exp.date}</div>
+              <ul style={{ paddingLeft: "1.25rem" }}>
+                {exp.details.map((d, j) => (
+                  <li key={j}>{d}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+
+        <section style={{ marginBottom: "2rem" }}>
+          <div style={sectionHeader}>Education</div>
+          {resumeData.education.map((edu, i) => (
+            <p key={i}>
+              {edu.degree} <span style={{ color: "#777" }}>| {edu.date}</span>
+            </p>
+          ))}
+        </section>
       </div>
     </div>
   );
@@ -349,38 +230,6 @@ function LandingPage({ theme, onOpenContact, fabPos, onFabMove }) {
         </Row>
       </Container>
     </div>
-  );
-}
-
-function AppFooter({ theme }) {
-  const isDark = theme === "dark";
-  return (
-    <footer
-      style={{
-        width: "100%",
-        background: isDark ? "#18121e" : "#eaeaea",
-        color: isDark ? "#bbb" : "#222",
-        textAlign: "center",
-        padding: "1rem 0",
-        marginTop: "2rem",
-      }}
-    >
-      <span style={{ verticalAlign: "middle", fontSize: "0.75rem" }}>
-        <FaRegCopyright style={{ marginRight: 4, fontSize: "0.09rem" }} />
-        2025-2030{" "}
-        <a
-          href="https://github.com/deepankarthegeyen"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            color: isDark ? "#bbb" : "#222",
-            textDecoration: "underline",
-          }}
-        >
-          Deepan Karthegeyen
-        </a>
-      </span>
-    </footer>
   );
 }
 

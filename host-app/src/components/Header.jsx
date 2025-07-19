@@ -44,6 +44,7 @@ export default function Header({ theme, onToggleTheme }) {
           onClick={() => navigate(process.env.NODE_ENV === 'production'
                   ? "/"
                   : "/")}
+          className="header-name"
           style={{
             color: theme === "dark" ? "white" : "#222",
             display: "flex",
@@ -54,8 +55,8 @@ export default function Header({ theme, onToggleTheme }) {
         </Nav.Link>
         <div className="flex-grow-1" />
         <Nav
-          className="ms-auto align-items-center justify-content-end"
-          style={{ gap: "0.5rem" }}
+          className="ms-auto align-items-center justify-content-end header-icons-row"
+          style={{ gap: "0.5rem", display: 'flex', flexDirection: 'row' }}
         >
           <Nav.Link
             onClick={() => navigate("/system-design")}
@@ -65,7 +66,7 @@ export default function Header({ theme, onToggleTheme }) {
               alignItems: "center",
             }}
           >
-            <FaSitemap style={{ marginRight: 6 }} /> Architecture
+            <FaSitemap style={{ marginRight: 6 }} /> <span className="header-btn-text">Architecture</span>
           </Nav.Link>
           <Nav.Link
             onClick={() => navigate("/resume")}
@@ -75,13 +76,28 @@ export default function Header({ theme, onToggleTheme }) {
               alignItems: "center",
             }}
           >
-            <FaFileAlt style={{ marginRight: 6 }} /> Resume
+            <FaFileAlt style={{ marginRight: 6 }} /> <span className="header-btn-text">Resume</span>
           </Nav.Link>
           <Nav.Link style={{ color: theme === 'dark' ? 'white' : '#222', display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={onToggleTheme}>
-            <FaMoon style={{ marginRight: 6 }} /> Theme
+            <FaMoon style={{ marginRight: 6 }} /> <span className="header-btn-text">Theme</span>
           </Nav.Link>
         </Nav>
       </Container>
+      {/* Responsive CSS: Hide name and text labels on mobile, keep icons in a row */}
+      <style>{`
+        @media (max-width: 600px) {
+          .header-name, .header-btn-text {
+            display: none !important;
+          }
+          .header-icons-row {
+            flex-direction: row !important;
+            justify-content: flex-end !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+            width: auto !important;
+          }
+        }
+      `}</style>
     </Navbar>
   );
 }

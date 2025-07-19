@@ -1,7 +1,10 @@
 import React from 'react';
 import { FaEnvelope, FaLinkedin, FaMedium, FaGlobe, FaGithub } from 'react-icons/fa';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import SystemDesign from './SystemDesign';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import SystemDesign from './components/SystemDesign';
+import Footer from './components/Footer';
+import Contact from './components/Contact';
+import profile from './assets/profile.jpg';
 
 const projects = [
   {
@@ -189,13 +192,133 @@ function MainPage() {
   );
 }
 
+function AppContent() {
+  const location = useLocation();
+  const isSystemDesign = location.pathname === '/system-design';
+  const isResume = location.pathname === '/resume';
+  const theme = isSystemDesign ? 'light' : 'dark';
+
+  // Floating contact button state
+  const [openContact, setOpenContact] = React.useState(false);
+  const [fabPos, setFabPos] = React.useState({ x: window.innerWidth - 96, y: window.innerHeight - 120 });
+  const [dragging, setDragging] = React.useState(false);
+  const dragOffset = React.useRef({ x: 0, y: 0 });
+
+  // Drag handlers
+  const onDragStart = (e: React.MouseEvent | React.TouchEvent) => {
+    setDragging(true);
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+    dragOffset.current = {
+      x: clientX - fabPos.x,
+      y: clientY - fabPos.y,
+    };
+    e.stopPropagation();
+  };
+  const onDrag = (e: MouseEvent | TouchEvent) => {
+    if (!dragging) return;
+    const clientX = 'touches' in e ? (e as TouchEvent).touches[0].clientX : (e as MouseEvent).clientX;
+    const clientY = 'touches' in e ? (e as TouchEvent).touches[0].clientY : (e as MouseEvent).clientY;
+    let newX = clientX - dragOffset.current.x;
+    let newY = clientY - dragOffset.current.y;
+    // Keep within window bounds
+    const btnSize = 64;
+    newX = Math.max(8, Math.min(window.innerWidth - btnSize - 8, newX));
+    newY = Math.max(8, Math.min(window.innerHeight - btnSize - 8, newY));
+    setFabPos({ x: newX, y: newY });
+  };
+  const onDragEnd = () => setDragging(false);
+
+  React.useEffect(() => {
+    if (dragging) {
+      window.addEventListener('mousemove', onDrag);
+      window.addEventListener('mouseup', onDragEnd);
+      window.addEventListener('touchmove', onDrag);
+      window.addEventListener('touchend', onDragEnd);
+    } else {
+      window.removeEventListener('mousemove', onDrag);
+      window.removeEventListener('mouseup', onDragEnd);
+      window.removeEventListener('touchmove', onDrag);
+      window.removeEventListener('touchend', onDragEnd);
+    }
+    return () => {
+      window.removeEventListener('mousemove', onDrag);
+      window.removeEventListener('mouseup', onDragEnd);
+      window.removeEventListener('touchmove', onDrag);
+      window.removeEventListener('touchend', onDragEnd);
+    };
+    // eslint-disable-next-line
+  }, [dragging, fabPos]);
+
+  return (
+    <div
+      style={{
+        background: isSystemDesign ? '#fff' : '#23182a',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      {/* Debug: Fixed TEST box in top left */}
+      <div style={{ position: 'fixed', top: 0, left: 0, zIndex: 9999, background: 'red', color: 'white', padding: 8 }}>
+        TEST
+      </div>
+      <div style={{ flex: 1 }}>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/system-design" element={<SystemDesign />} />
+        </Routes>
+      </div>
+      {/* Debug: Always-visible contact button in bottom right */}
+      <button
+        style={{
+          position: 'fixed',
+          right: 32,
+          bottom: 32,
+          zIndex: 3000,
+          background: '#bada55',
+          color: '#222',
+          borderRadius: '50%',
+          width: 64,
+          height: 64,
+          fontSize: 32,
+          fontWeight: 700,
+          border: 'none',
+          boxShadow: '0 2px 16px #0003',
+          cursor: 'pointer',
+        }}
+        onClick={() => setOpenContact(true)}
+      >
+        @
+      </button>
+      {/* Floating Contact Button (draggable) */}
+      <button
+        className="contact-fab zoom-hover"
+        onClick={() => setOpenContact(true)}
+        aria-label="Open contact sidebar"
+        style={{
+          left: fabPos.x,
+          top: fabPos.y,
+          position: 'fixed',
+          zIndex: 2000,
+          touchAction: 'none',
+          cursor: dragging ? 'grabbing' : 'grab',
+        }}
+        onMouseDown={onDragStart}
+        onTouchStart={onDragStart}
+      >
+        <span style={{ fontSize: 28, fontWeight: 700 }}>@</span>
+      </button>
+      <Contact open={openContact} onClose={() => setOpenContact(false)} theme={theme} fabPos={fabPos} />
+      <Footer theme={theme} />
+    </div>
+  );
+}
+
 const App: React.FC = () => {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/system-design" element={<SystemDesign />} />
-      </Routes>
+      <AppContent />
     </Router>
   );
 };

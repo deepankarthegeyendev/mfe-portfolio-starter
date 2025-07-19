@@ -45,7 +45,7 @@ const socialLinks = [
 
 function MainPage() {
   return (
-    <div style={{ background: '#23182a', minHeight: '100vh', color: 'white', fontFamily: 'Inter, Arial, sans-serif' }}>
+    <div style={{ background: '#fff', minHeight: '100vh', color: '#222', fontFamily: 'Inter, Arial, sans-serif' }}>
       {/* Fixed Header */}
       <header
         style={{
@@ -196,7 +196,8 @@ function AppContent() {
   const location = useLocation();
   const isSystemDesign = location.pathname === '/system-design';
   const isResume = location.pathname === '/resume';
-  const theme = isSystemDesign ? 'light' : 'dark';
+  const isHome = location.pathname === '/';
+  const theme = isSystemDesign || isResume || isHome ? 'light' : 'dark';
 
   // Floating contact button state
   const [openContact, setOpenContact] = React.useState(false);
@@ -253,7 +254,7 @@ function AppContent() {
   return (
     <div
       style={{
-        background: isSystemDesign ? '#fff' : '#23182a',
+        background: '#fff',
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
@@ -269,29 +270,7 @@ function AppContent() {
           <Route path="/system-design" element={<SystemDesign />} />
         </Routes>
       </div>
-      {/* Debug: Always-visible contact button in bottom right */}
-      <button
-        style={{
-          position: 'fixed',
-          right: 32,
-          bottom: 32,
-          zIndex: 3000,
-          background: '#bada55',
-          color: '#222',
-          borderRadius: '50%',
-          width: 64,
-          height: 64,
-          fontSize: 32,
-          fontWeight: 700,
-          border: 'none',
-          boxShadow: '0 2px 16px #0003',
-          cursor: 'pointer',
-        }}
-        onClick={() => setOpenContact(true)}
-      >
-        @
-      </button>
-      {/* Floating Contact Button (draggable) */}
+      {/* Floating Contact Button (always visible) */}
       <button
         className="contact-fab zoom-hover"
         onClick={() => setOpenContact(true)}

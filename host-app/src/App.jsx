@@ -7,7 +7,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaRegCopyright } from "react-icons/fa";
-import logo from "./assets/dk-logo.svg";
+import logo from "./assets/DK-logo.svg";
 import SystemDesign from "./components/SystemDesign";
 
 const resumeData = {

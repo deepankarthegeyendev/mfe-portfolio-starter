@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vite build",
     "deploy": "npm run build && aws s3 sync dist/ s3://my-portfolio-deepan/ --delete",
-    "preview": "vite preview"
+    "preview": "vite preview --open"
   },
   "dependencies": {
     "bootstrap": "^5.3.7",

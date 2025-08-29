@@ -20,7 +20,7 @@ export default function Projects({ theme }) {
       display: 'inline-block',
       marginTop: '4px'
     }}>
-      🚧 Coming Aug'25
+      🚧 Coming Sep'25
     </div>
   );
 

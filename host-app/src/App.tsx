@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react
 import SystemDesign from './components/SystemDesign';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
+import ResumeGPTApp from './components/ResumeGPTApp';
 import profile from './assets/profile.jpg';
 
 const projects = [
@@ -30,8 +31,8 @@ const projects = [
       'Exposed as resumegpt/ResumeApp via Module Federation',
     ],
     tech: 'React, OpenAI API, Vite, Chakra UI',
-    website: '#',
-    github: '#',
+    website: '/resumegpt',
+    github: 'https://github.com/yourusername/mfe-portfolio-starter/tree/main/resumeGPT',
   },
 ];
 
@@ -268,6 +269,7 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/system-design" element={<SystemDesign />} />
+          <Route path="/resumegpt" element={<ResumeGPTApp />} />
         </Routes>
       </div>
       {/* Floating Contact Button (always visible) */}

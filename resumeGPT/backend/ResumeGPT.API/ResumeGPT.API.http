@@ -1,0 +1,6 @@
+@ResumeGPT.API_HostAddress = http://localhost:5278
+
+GET {{ResumeGPT.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

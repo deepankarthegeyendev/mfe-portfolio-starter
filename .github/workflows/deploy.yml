@@ -70,11 +70,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: resumegpt-app
+        working-directory: resumegpt
 
       - name: Build project
         run: npm run build
-        working-directory: resumegpt-app
+        working-directory: resumegpt
 
       - name: Upload to S3
         uses: jakejarvis/s3-sync-action@v0.5.1
@@ -85,7 +85,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
-          SOURCE_DIR: resumegpt-app/dist
+          SOURCE_DIR: resumegpt/dist
 
       - name: Invalidate CloudFront cache
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.RESUMEGPT_CLOUDFRONT_ID }} --paths '/*'

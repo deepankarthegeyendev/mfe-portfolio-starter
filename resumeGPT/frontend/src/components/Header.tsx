@@ -19,8 +19,6 @@ const Header: React.FC = () => {
   const headerBg = useColorModeValue('gray.900', 'gray.900');
   const headerColor = useColorModeValue('white', 'white');
   const logoColor = useColorModeValue('blue.400', 'blue.200');
-  const linkActive = useColorModeValue('blue.300', 'blue.200');
-  const ctaColor = useColorModeValue('blue.600', 'blue.400');
 
   return (
     <Box

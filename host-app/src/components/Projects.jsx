@@ -1,5 +1,10 @@
 import React from 'react';
 import { FaGithub, FaGlobe } from 'react-icons/fa';
+import { motion } from "framer-motion";
+
+
+
+
 
 export default function Projects({ theme }) {
   const isDark = theme === 'dark';
@@ -9,22 +14,30 @@ export default function Projects({ theme }) {
   const badgeBg = isDark ? '#ffaa00' : '#ffcc00';
   const badgeColor = '#000';
 
-  const comingSoonBadgeAug = (
-    <div style={{
-      backgroundColor: badgeBg,
-      color: badgeColor,
-      fontSize: '0.75rem',
-      fontWeight: 'bold',
-      borderRadius: '4px',
-      padding: '2px 6px',
-      display: 'inline-block',
-      marginTop: '4px'
-    }}>
-      🚧 Coming Sep'25
-    </div>
+  const MotionDiv = motion.div;
+
+  const releasedBadgeOct = (
+    <MotionDiv
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      style={{
+        background: "linear-gradient(90deg, #667EEA, #764BA2)", // blue→purple gradient
+        color: "white",
+        fontSize: "0.75rem",
+        fontWeight: "bold",
+        borderRadius: "6px",
+        padding: "3px 10px",
+        display: "inline-block",
+        marginTop: "4px",
+        boxShadow: "0 0 10px rgba(118,75,162,0.5)",
+      }}
+    >
+      ✨ Released Oct’25
+    </MotionDiv>
   );
 
-  const comingSoonBadgeSep = (
+  const comingSoonBadgeOct = (
     <div style={{
       backgroundColor: badgeBg,
       color: badgeColor,
@@ -35,7 +48,7 @@ export default function Projects({ theme }) {
       display: 'inline-block',
       marginTop: '4px'
     }}>
-      🚧 Coming Sep'25
+      🚧 Coming soon in Oct'25
     </div>
   );
 
@@ -76,13 +89,13 @@ export default function Projects({ theme }) {
             <div style={{ color: tagColor, fontSize: '0.98rem' }}>
               React &nbsp;·&nbsp; OpenAI API &nbsp;·&nbsp; .NET Core
             </div>
-            {comingSoonBadgeAug}
+            {releasedBadgeOct }
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginLeft: 24, minWidth: 110 }}>
             <a href="#" rel="noopener noreferrer" className="project-btn-vertical project-bounce" style={{ textDecoration: 'none' }}>
               Website
             </a>
-            <a href="#" rel="noopener noreferrer" className="project-btn-vertical project-bounce" style={{ textDecoration: 'none' }}>
+            <a target='_blank' href="https://github.com/deepankarthegeyendev/mfe-portfolio-starter/tree/main/resumeGPT" rel="noopener noreferrer" className="project-btn-vertical project-bounce" style={{ textDecoration: 'none' }}>
               <FaGithub style={{ marginRight: 6, fontSize: '1.1rem' }} />GitHub
             </a>
           </div>
@@ -120,7 +133,7 @@ export default function Projects({ theme }) {
             <div style={{ color: tagColor, fontSize: '0.98rem' }}>
               Web &nbsp;·&nbsp; Dynamic &nbsp;·&nbsp; Maps &nbsp;·&nbsp; Module Federation
             </div>
-            {comingSoonBadgeSep}
+            {comingSoonBadgeOct}
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginLeft: 24, minWidth: 110 }}>
             <a href="#" rel="noopener noreferrer" className="project-btn-vertical project-bounce" style={{ textDecoration: 'none' }}>

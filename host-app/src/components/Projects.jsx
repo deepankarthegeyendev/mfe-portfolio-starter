@@ -92,7 +92,7 @@ export default function Projects({ theme }) {
             {releasedBadgeOct }
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginLeft: 24, minWidth: 110 }}>
-            <a href="#" rel="noopener noreferrer" className="project-btn-vertical project-bounce" style={{ textDecoration: 'none' }}>
+            <a href="https://resumegpt.deepankarthegeyen.dev/" target='_blank' rel="noopener noreferrer" className="project-btn-vertical project-bounce" style={{ textDecoration: 'none' }}>
               Website
             </a>
             <a target='_blank' href="https://github.com/deepankarthegeyendev/mfe-portfolio-starter/tree/main/resumeGPT" rel="noopener noreferrer" className="project-btn-vertical project-bounce" style={{ textDecoration: 'none' }}>

@@ -79,8 +79,8 @@ const Header: React.FC = () => {
           <IconButton
             aria-label="Toggle theme"
             icon={colorMode === 'light' ? <FaMoon /> : <FaSun />}
-            colorScheme="gray"
-            variant="ghost"
+            colorScheme="white"
+            variant="outline"
             fontSize="xl"
             ml={2}
             isRound

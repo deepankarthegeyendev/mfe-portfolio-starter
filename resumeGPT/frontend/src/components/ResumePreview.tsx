@@ -60,64 +60,24 @@ interface ResumePreviewProps {
 }
 
 const ResumePreview: React.FC<ResumePreviewProps> = ({ resumeData }) => {
-  // Simple toast replacement
-  const showToast = (title: string, description: string) => {
-    alert(`${title}: ${description}`);
-  };
+  // If no resumeData or no job description/personal info, show message
+  if (!resumeData || !resumeData.personalInfo || !resumeData.jobDescription) {
+    return (
+      <Container maxW="800px" py={8}>
+        <VStack gap={6} align="center" justify="center" minH="60vh">
+          <Heading size="lg" color="blue.500">Resume Preview</Heading>
+          <Text fontSize="xl" color="gray.500" textAlign="center">
+            No job description or resume uploaded.<br />Please build your resume first.
+          </Text>
+        </VStack>
+      </Container>
+    );
+  }
 
-  // Mock data for preview if no data is provided
-  const mockData: ResumeData = {
-    personalInfo: {
-      fullName: 'John Doe',
-      email: 'john.doe@email.com',
-      phone: '+1 (555) 123-4567',
-      location: 'San Francisco, CA',
-      linkedin: 'https://linkedin.com/in/johndoe',
-      github: 'https://github.com/johndoe',
-      website: 'https://johndoe.dev',
-    },
-    experience: [
-      {
-        id: '1',
-        company: 'Tech Corp',
-        position: 'Senior Software Engineer',
-        location: 'San Francisco, CA',
-        startDate: '2022-01',
-        endDate: '',
-        current: true,
-        description: 'Led development of scalable web applications using React and Node.js.',
-        achievements: [
-          'Improved application performance by 40% through code optimization',
-          'Mentored 3 junior developers and conducted code reviews',
-          'Implemented CI/CD pipeline reducing deployment time by 60%',
-        ],
-      },
-    ],
-    education: [
-      {
-        id: '1',
-        institution: 'University of California',
-        degree: 'Bachelor of Science',
-        field: 'Computer Science',
-        location: 'Berkeley, CA',
-        startDate: '2018-09',
-        endDate: '2022-05',
-        current: false,
-        gpa: '3.8',
-        achievements: [
-          'Magna Cum Laude',
-          'Dean\'s List for 4 consecutive semesters',
-        ],
-      },
-    ],
-    skills: ['JavaScript', 'TypeScript', 'React', 'Node.js', 'Python', 'AWS', 'Docker'],
-    jobDescription: '',
-  };
-
-  const data = resumeData || mockData;
+  const data = resumeData;
 
   const handleDownload = () => {
-    showToast('Download Started', 'Your resume PDF is being generated.');
+    alert('Download Started: Your resume PDF is being generated.');
   };
 
   return (
@@ -150,7 +110,7 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ resumeData }) => {
         </HStack>
 
         {/* Resume Content */}
-        <Box bg="white" p={8} borderRadius="lg" boxShadow="lg" border="1px" borderColor="gray.200">
+        <Box className="resume-section-card">
           {/* Header */}
           <VStack gap={4} align="center" mb={8}>
             <Heading size="xl" color="blue.500" textAlign="center">

@@ -741,11 +741,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\My Projects\\mfe-portfolio-starter\\mfe-portfolio-starter\\resumeGPT\\backend\\ResumeGPT.API\\ResumeGPT.API.csproj",
+      "projectUniqueName": "D:\\My VS Code\\mfe-portfolio-starter\\mfe-portfolio-starter\\resumeGPT\\backend\\ResumeGPT.API\\ResumeGPT.API.csproj",
       "projectName": "ResumeGPT.API",
-      "projectPath": "D:\\My Projects\\mfe-portfolio-starter\\mfe-portfolio-starter\\resumeGPT\\backend\\ResumeGPT.API\\ResumeGPT.API.csproj",
+      "projectPath": "D:\\My VS Code\\mfe-portfolio-starter\\mfe-portfolio-starter\\resumeGPT\\backend\\ResumeGPT.API\\ResumeGPT.API.csproj",
       "packagesPath": "C:\\Users\\DeepanKarthegeyen\\.nuget\\packages\\",
-      "outputPath": "D:\\My Projects\\mfe-portfolio-starter\\mfe-portfolio-starter\\resumeGPT\\backend\\ResumeGPT.API\\obj\\",
+      "outputPath": "D:\\My VS Code\\mfe-portfolio-starter\\mfe-portfolio-starter\\resumeGPT\\backend\\ResumeGPT.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

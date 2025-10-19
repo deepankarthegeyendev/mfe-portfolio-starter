@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SoLKIcdEMZY=",
+  "dgSpecHash": "9KKSpfk108s=",
   "success": true,
-  "projectFilePath": "D:\\My Projects\\mfe-portfolio-starter\\mfe-portfolio-starter\\resumeGPT\\backend\\ResumeGPT.API\\ResumeGPT.API.csproj",
+  "projectFilePath": "D:\\My VS Code\\mfe-portfolio-starter\\mfe-portfolio-starter\\resumeGPT\\backend\\ResumeGPT.API\\ResumeGPT.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DeepanKarthegeyen\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.9\\microsoft.aspnetcore.openapi.9.0.9.nupkg.sha512",
     "C:\\Users\\DeepanKarthegeyen\\.nuget\\packages\\microsoft.extensions.apidescription.server\\9.0.0\\microsoft.extensions.apidescription.server.9.0.0.nupkg.sha512",

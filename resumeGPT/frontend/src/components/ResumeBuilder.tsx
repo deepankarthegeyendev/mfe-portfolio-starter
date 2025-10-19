@@ -166,18 +166,16 @@ const ResumeBuilder: React.FC = () => {
         {/* Action Buttons */}
         <HStack justify="center" gap={4}>
           <Button
-            variant="outline"
-            colorScheme="gray"
-            color="white"
+            colorScheme="blue"
+            variant="outline"            
             onClick={handleGenerateResume}
             disabled={!resumeData.jobDescription.trim()}
           >
             {isGenerating ? <>{[...Array(3)].map(() => '.').join('')}</> : 'Generate Resume with AI'}
           </Button>
           <Button
-            variant="outline"
-            colorScheme="gray"
-            color="white"
+            colorScheme="blue"
+            variant="outline"           
             onClick={() => window.open('/preview', '_blank')}
           >
             <FaEye style={{ marginRight: '8px' }} />
@@ -189,31 +187,28 @@ const ResumeBuilder: React.FC = () => {
 
         {/* Forms Section */}
         <VStack gap={6} align="stretch">
-          <Box bg="white" p={6} borderRadius="xl" boxShadow="md" mb={5}>
+          <Box className="resume-section-card">
             <Heading fontSize="xl" color="blue.600" fontWeight="bold" mb={4}>Personal Information</Heading>
             <PersonalInfoForm
               data={resumeData.personalInfo}
               onChange={handlePersonalInfoChange}
             />
           </Box>
-          
-          <Box bg="white" p={6} borderRadius="xl" boxShadow="md" mb={5}>
+          <Box className="resume-section-card">
             <Heading fontSize="xl" color="blue.600" fontWeight="bold" mb={4}>Experience</Heading>
             <ExperienceForm
               data={resumeData.experience}
               onChange={handleExperienceChange}
             />
           </Box>
-          
-          <Box bg="white" p={6} borderRadius="xl" boxShadow="md" mb={5}>
+          <Box className="resume-section-card">
             <Heading fontSize="xl" color="blue.600" fontWeight="bold" mb={4}>Education</Heading>
             <EducationForm
               data={resumeData.education}
               onChange={handleEducationChange}
             />
           </Box>
-          
-          <Box bg="white" p={6} borderRadius="xl" boxShadow="md" mb={5}>
+          <Box className="resume-section-card">
             <Heading fontSize="xl" color="blue.600" fontWeight="bold" mb={4}>Skills</Heading>
             <SkillsForm
               data={resumeData.skills}

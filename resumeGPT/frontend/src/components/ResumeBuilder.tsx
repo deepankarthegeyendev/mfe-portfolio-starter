@@ -6,8 +6,9 @@ import {
   HStack,
   Text,
   Button,
+  Heading,
 } from '@chakra-ui/react';
-import { FaMagic, FaDownload, FaEye } from 'react-icons/fa';
+import { FaDownload, FaEye } from 'react-icons/fa';
 import PersonalInfoForm from './forms/PersonalInfoForm';
 import ExperienceForm from './forms/ExperienceForm';
 import EducationForm from './forms/EducationForm';
@@ -165,18 +166,18 @@ const ResumeBuilder: React.FC = () => {
         {/* Action Buttons */}
         <HStack justify="center" gap={4}>
           <Button
-            colorScheme="blue"
-            size="lg"
+            variant="outline"
+            colorScheme="gray"
+            color="white"
             onClick={handleGenerateResume}
             disabled={!resumeData.jobDescription.trim()}
           >
-            <FaMagic style={{ marginRight: '8px' }} />
-            {isGenerating ? 'Generating...' : 'Generate Resume with AI'}
+            {isGenerating ? <>{[...Array(3)].map(() => '.').join('')}</> : 'Generate Resume with AI'}
           </Button>
           <Button
-            colorScheme="teal"
-            size="lg"
             variant="outline"
+            colorScheme="gray"
+            color="white"
             onClick={() => window.open('/preview', '_blank')}
           >
             <FaEye style={{ marginRight: '8px' }} />
@@ -188,25 +189,37 @@ const ResumeBuilder: React.FC = () => {
 
         {/* Forms Section */}
         <VStack gap={6} align="stretch">
-          <PersonalInfoForm
-            data={resumeData.personalInfo}
-            onChange={handlePersonalInfoChange}
-          />
+          <Box bg="white" p={6} borderRadius="xl" boxShadow="md" mb={5}>
+            <Heading fontSize="xl" color="blue.600" fontWeight="bold" mb={4}>Personal Information</Heading>
+            <PersonalInfoForm
+              data={resumeData.personalInfo}
+              onChange={handlePersonalInfoChange}
+            />
+          </Box>
           
-          <ExperienceForm
-            data={resumeData.experience}
-            onChange={handleExperienceChange}
-          />
+          <Box bg="white" p={6} borderRadius="xl" boxShadow="md" mb={5}>
+            <Heading fontSize="xl" color="blue.600" fontWeight="bold" mb={4}>Experience</Heading>
+            <ExperienceForm
+              data={resumeData.experience}
+              onChange={handleExperienceChange}
+            />
+          </Box>
           
-          <EducationForm
-            data={resumeData.education}
-            onChange={handleEducationChange}
-          />
+          <Box bg="white" p={6} borderRadius="xl" boxShadow="md" mb={5}>
+            <Heading fontSize="xl" color="blue.600" fontWeight="bold" mb={4}>Education</Heading>
+            <EducationForm
+              data={resumeData.education}
+              onChange={handleEducationChange}
+            />
+          </Box>
           
-          <SkillsForm
-            data={resumeData.skills}
-            onChange={handleSkillsChange}
-          />
+          <Box bg="white" p={6} borderRadius="xl" boxShadow="md" mb={5}>
+            <Heading fontSize="xl" color="blue.600" fontWeight="bold" mb={4}>Skills</Heading>
+            <SkillsForm
+              data={resumeData.skills}
+              onChange={handleSkillsChange}
+            />
+          </Box>
         </VStack>
 
         {/* Bottom Actions */}

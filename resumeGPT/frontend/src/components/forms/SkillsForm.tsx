@@ -41,21 +41,23 @@ const SkillsForm: React.FC<SkillsFormProps> = ({ data, onChange }) => {
       addSkill(newSkill);
     }
   };
+
   return (
-    <Box bg="white" p={6} borderRadius="lg" boxShadow="sm">
-      <Heading size="md" mb={4} color="blue.500">
+    <Box className="form-section" p={6} borderRadius="lg" boxShadow="sm">
+      <Heading size="md" mb={4} className="form-heading">
         <Icon as={FaCogs} mr={2} />
         Skills
       </Heading>
       <VStack gap={4} align="stretch">
-        <Box width="100%">
-          <Text fontSize="sm" fontWeight="medium" mb={2} color="gray.700">Add Skills</Text>
+        <Box width="100%" className="form-card" p={4} borderRadius="md">
+          <Text fontSize="sm" fontWeight="medium" mb={2} className="form-label">Add Skills</Text>
           <HStack gap={2}>
             <Input
               value={newSkill}
               onChange={(e) => setNewSkill(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Type a skill and press Enter"
+              className="form-input"
             />
             <Button
               size="sm"
@@ -70,14 +72,14 @@ const SkillsForm: React.FC<SkillsFormProps> = ({ data, onChange }) => {
         </Box>
         {data.length > 0 && (
           <Box>
-            <Text fontSize="sm" fontWeight="medium" mb={2} color="gray.700">
+            <Text fontSize="sm" fontWeight="medium" mb={2} className="form-label">
               Your Skills ({data.length})
             </Text>
             <Wrap gap={2}>
               {data.map((skill, index) => (
                 <Badge
                   key={index}
-                  colorScheme="blue"
+                  className="skill-badge"
                   px={3}
                   py={1}
                   borderRadius={12}
@@ -85,6 +87,7 @@ const SkillsForm: React.FC<SkillsFormProps> = ({ data, onChange }) => {
                   display="flex"
                   alignItems="center"
                   gap={2}
+                  variant="solid"
                 >
                   {skill}
                   <Button size="xs" ml={2} colorScheme="red" variant="ghost" onClick={() => removeSkill(skill)} aria-label={`Remove ${skill}`}>
@@ -95,9 +98,9 @@ const SkillsForm: React.FC<SkillsFormProps> = ({ data, onChange }) => {
             </Wrap>
           </Box>
         )}
-        <Box>
-          <Text fontSize="sm" fontWeight="medium" mb={2} color="gray.700">Suggested Skills</Text>
-          <Text fontSize="sm" color="gray.600" mb={2}>
+        <Box className="form-card" p={4} borderRadius="md">
+          <Text fontSize="sm" fontWeight="medium" mb={2} className="form-label">Suggested Skills</Text>
+          <Text fontSize="sm" className="form-text" mb={2}>
             Click on a skill to add it to your resume
           </Text>
           <Wrap gap={2}>
@@ -121,7 +124,7 @@ const SkillsForm: React.FC<SkillsFormProps> = ({ data, onChange }) => {
           </Wrap>
         </Box>
         {data.length === 0 && (
-          <Box textAlign="center" py={8} color="gray.500">
+          <Box textAlign="center" py={8} color="white">
             <Icon as={FaCogs} w={12} h={12} mb={4} />
             <Text>No skills added yet.</Text>
             <Text fontSize="sm">Add skills manually or select from suggestions above.</Text>

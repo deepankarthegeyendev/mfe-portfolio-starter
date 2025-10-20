@@ -10,8 +10,36 @@ import {
   Icon,
   Checkbox,
   Text,
+  useColorModeValue,
 } from '@chakra-ui/react';
-import { FaBriefcase, FaPlus, FaTrash, FaCalendarAlt } from 'react-icons/fa';
+import { FaBriefcase, FaPlus, FaTrash } from 'react-icons/fa';
+
+// Styles for form elements
+const formStyles = {
+  section: (bg: string) => ({
+    bg,
+    p: 6,
+    borderRadius: 'lg',
+    boxShadow: 'sm'
+  }),
+  input: (inputBg: string, placeholderColor: string) => ({
+    bg: inputBg,
+    _placeholder: { color: placeholderColor },
+    borderColor: 'inherit'
+  }),
+  heading: (color: string) => ({
+    size: 'md',
+    mb: 4,
+    color
+  }),
+  label: (color: string) => ({
+    fontSize: 'sm',
+    fontWeight: 'medium',
+    mb: 2,
+    color
+  })
+};
+
 // Define Experience interface locally
 interface Experience {
   id: string;
@@ -31,6 +59,13 @@ interface ExperienceFormProps {
 }
 
 const ExperienceForm: React.FC<ExperienceFormProps> = ({ data, onChange }) => {
+  const bg = useColorModeValue('white', 'gray.800');
+  const headingColor = useColorModeValue('blue.500', 'blue.300');
+  const labelColor = useColorModeValue('gray.700', 'gray.200');
+  const inputBg = useColorModeValue('white', 'gray.700');
+  const placeholderColor = useColorModeValue('gray.400', 'gray.500');
+  const borderColor = useColorModeValue('gray.200', 'gray.600');
+
   const addExperience = () => {
     const newExperience: Experience = {
       id: Date.now().toString(),
@@ -80,9 +115,9 @@ const ExperienceForm: React.FC<ExperienceFormProps> = ({ data, onChange }) => {
   };
 
   return (
-    <Box bg="white" p={6} borderRadius="lg" boxShadow="sm">
+    <Box {...formStyles.section(bg)}>
       <HStack justify="space-between" mb={4}>
-        <Heading size="md" color="blue.500">
+        <Heading {...formStyles.heading(headingColor)}>
           <Icon as={FaBriefcase} mr={2} />
           Work Experience
         </Heading>
@@ -99,7 +134,7 @@ const ExperienceForm: React.FC<ExperienceFormProps> = ({ data, onChange }) => {
 
       <VStack spacing={6} align="stretch">
         {data.map((exp, index) => (
-          <Box key={exp.id} p={4} border="1px" borderColor="gray.200" borderRadius="md">
+          <Box key={exp.id} p={4} border="1px" borderColor={borderColor} borderRadius="md" bg={inputBg}>
             <HStack justify="space-between" mb={4}>
               <Text fontWeight="semibold">Experience #{index + 1}</Text>
               <Button

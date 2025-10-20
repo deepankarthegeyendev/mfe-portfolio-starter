@@ -1,9 +1,28 @@
+body {
+  background: #121318; /* dark gutters like host-app */
+}
+
 #root {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  background: #f4f7fa;
+  padding: 1rem;
+  text-align: left;
+  background: #fff; /* centered white column */
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.02) inset;
+}
+/* Make header fixed like host-app and add top padding */
+.fixed-header {
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+body, #root > div {
+  padding-top: 64px; /* slightly reduced from header height for tighter spacing */
 }
 
 .logo {
@@ -43,4 +62,131 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* --- Navigation Styles --- */
+.nav-icon {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s !important;
+}
+
+.nav-icon:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.nav-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Show header text on desktop, hide on mobile */
+@media (max-width: 600px) {
+  .header-text {
+    display: none !important;
+  }
+  
+  .header-icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .nav-icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+}
+
+/* Buttons: show label on desktop, hide on mobile */
+.nav-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+@media (max-width: 600px) {
+  .nav-button {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+  .nav-button > span[role="img"], .nav-button .chakra-button__icon {
+    margin-right: 0 !important;
+  }
+  .nav-button {
+    min-width: 40px !important;
+    justify-content: center !important;
+  }
+  .nav-button > .nav-label {
+    display: none !important;
+  }
+}
+
+/* Nav labels: visible on desktop, hidden on mobile */
+.nav-label {
+  display: inline-block;
+}
+
+@media (max-width: 600px) {
+  .nav-label {
+    display: none !important;
+  }
+  .nav-item {
+    gap: 0 !important;
+  }
+}
+/* --- Mobile Responsive Styles --- */
+@media (max-width: 600px) {
+  #root {
+    padding: 0.5rem;
+    min-width: 0;
+  }
+  .card {
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  
+  .nav-button-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .button-text {
+    display: none;
+  }
+  
+  /* Make icons more prominent on mobile */
+  .chakra-icon {
+    font-size: 1.2rem;
+  }
+  .resume-section-card {
+    padding: 0.7rem 0.5rem;
+    border-radius: 10px;
+    margin-bottom: 12px;
+  }
+  .resume-section-title {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+  .chakra-heading, h1, h2, h3, h4, h5, h6 {
+    font-size: 1.2rem !important;
+  }
+  .chakra-button, button {
+    font-size: 0.95rem !important;
+    padding: 0.4rem 0.7rem !important;
+  }
+  .chakra-input, .chakra-textarea, input, textarea {
+    font-size: 1rem !important;
+    padding: 0.4rem 0.7rem !important;
+  }
+  .chakra-stack, .chakra-vstack, .chakra-hstack {
+    gap: 0.5rem !important;
+  }
+  .chakra-container, .chakra-container * {
+    max-width: 100vw !important;
+    box-sizing: border-box;
+  }
 }

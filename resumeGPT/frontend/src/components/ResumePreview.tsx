@@ -63,7 +63,7 @@ const ResumePreview: React.FC<ResumePreviewProps> = ({ resumeData }) => {
   // If no resumeData or no job description/personal info, show message
   if (!resumeData || !resumeData.personalInfo || !resumeData.jobDescription) {
     return (
-      <Container maxW="800px" py={8}>
+      <Container maxW="1200px" py={8}>
         <VStack gap={6} align="center" justify="center" minH="60vh">
           <Heading size="lg" color="blue.500">Resume Preview</Heading>
           <Text fontSize="xl" color="gray.500" textAlign="center">

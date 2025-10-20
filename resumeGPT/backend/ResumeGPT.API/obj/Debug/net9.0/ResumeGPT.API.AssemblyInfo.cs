@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ResumeGPT.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+70e39b1a29a6cb8e282fdba1db47a5cdb44714c8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f0cdbc25c2d608c148cbdd9f20b86b9a647ed4b")]
 [assembly: System.Reflection.AssemblyProductAttribute("ResumeGPT.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ResumeGPT.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

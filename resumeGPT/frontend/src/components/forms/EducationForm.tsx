@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Box,
   Input,
-  Textarea,
   VStack,
   HStack,
   Button,
@@ -10,6 +9,9 @@ import {
   Icon,
   Checkbox,
   Text,
+  FormControl,
+  FormLabel,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { FaGraduationCap, FaPlus, FaTrash } from 'react-icons/fa';
 // Define Education interface locally
@@ -32,6 +34,13 @@ interface EducationFormProps {
 }
 
 const EducationForm: React.FC<EducationFormProps> = ({ data, onChange }) => {
+  const bg = useColorModeValue('white', 'gray.800');
+  const headingColor = useColorModeValue('blue.500', 'blue.300');
+  const labelColor = useColorModeValue('gray.700', 'gray.200');
+  const inputBg = useColorModeValue('white', 'gray.700');
+  const placeholderColor = useColorModeValue('gray.400', 'gray.500');
+  const borderColor = useColorModeValue('gray.200', 'gray.600');
+
   const addEducation = () => {
     const newEducation: Education = {
       id: Date.now().toString(),
@@ -81,9 +90,9 @@ const EducationForm: React.FC<EducationFormProps> = ({ data, onChange }) => {
   };
 
   return (
-    <Box bg="white" p={6} borderRadius="lg" boxShadow="sm">
+    <Box className="form-section" p={6} borderRadius="lg" boxShadow="sm">
       <HStack justify="space-between" mb={4}>
-        <Heading size="md" color="blue.500">
+        <Heading size="md" className="form-heading">
           <Icon as={FaGraduationCap} mr={2} />
           Education
         </Heading>
@@ -100,9 +109,9 @@ const EducationForm: React.FC<EducationFormProps> = ({ data, onChange }) => {
 
       <VStack spacing={6} align="stretch">
         {data.map((edu, index) => (
-          <Box key={edu.id} p={4} border="1px" borderColor="gray.200" borderRadius="md">
+          <Box key={edu.id} className="form-card" p={4} borderRadius="md">
             <HStack justify="space-between" mb={4}>
-              <Text fontWeight="semibold">Education #{index + 1}</Text>
+              <Text fontWeight="semibold" className="form-text">Education #{index + 1}</Text>
               <Button
                 size="sm"
                 colorScheme="red"
@@ -117,20 +126,22 @@ const EducationForm: React.FC<EducationFormProps> = ({ data, onChange }) => {
             <VStack spacing={4}>
               <HStack spacing={4} width="100%">
                 <FormControl flex={1}>
-                  <FormLabel>Institution *</FormLabel>
+                  <FormLabel className="form-label">Institution *</FormLabel>
                   <Input
                     value={edu.institution}
                     onChange={(e) => updateEducation(edu.id, 'institution', e.target.value)}
                     placeholder="University/School Name"
+                    className="form-input"
                     isRequired
                   />
                 </FormControl>
                 <FormControl flex={1}>
-                  <FormLabel>Degree *</FormLabel>
+                  <FormLabel className="form-label">Degree *</FormLabel>
                   <Input
                     value={edu.degree}
                     onChange={(e) => updateEducation(edu.id, 'degree', e.target.value)}
                     placeholder="Bachelor's, Master's, etc."
+                    className="form-input"
                     isRequired
                   />
                 </FormControl>
@@ -138,41 +149,45 @@ const EducationForm: React.FC<EducationFormProps> = ({ data, onChange }) => {
 
               <HStack spacing={4} width="100%">
                 <FormControl flex={1}>
-                  <FormLabel>Field of Study *</FormLabel>
+                  <FormLabel className="form-label">Field of Study *</FormLabel>
                   <Input
                     value={edu.field}
                     onChange={(e) => updateEducation(edu.id, 'field', e.target.value)}
                     placeholder="Computer Science, Business, etc."
+                    className="form-input"
                     isRequired
                   />
                 </FormControl>
                 <FormControl flex={1}>
-                  <FormLabel>Location</FormLabel>
+                  <FormLabel className="form-label">Location</FormLabel>
                   <Input
                     value={edu.location}
                     onChange={(e) => updateEducation(edu.id, 'location', e.target.value)}
-                    placeholder="City, State"
+                    placeholder="City, Country"
+                    className="form-input"
                   />
                 </FormControl>
               </HStack>
 
               <HStack spacing={4} width="100%">
                 <FormControl flex={1}>
-                  <FormLabel>Start Date *</FormLabel>
+                  <FormLabel className="form-label">Start Date *</FormLabel>
                   <Input
                     type="month"
                     value={edu.startDate}
                     onChange={(e) => updateEducation(edu.id, 'startDate', e.target.value)}
+                    className="form-input"
                     isRequired
                   />
                 </FormControl>
                 <FormControl flex={1}>
-                  <FormLabel>End Date</FormLabel>
+                  <FormLabel className="form-label">End Date</FormLabel>
                   <Input
                     type="month"
                     value={edu.endDate}
                     onChange={(e) => updateEducation(edu.id, 'endDate', e.target.value)}
-                    disabled={edu.current}
+                    className="form-input"
+                    isDisabled={edu.current}
                   />
                 </FormControl>
                 <FormControl flex={1}>

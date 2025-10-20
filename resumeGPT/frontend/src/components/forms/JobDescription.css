@@ -1,0 +1,32 @@
+/* Mobile responsive styles for the job description input */
+.job-description-textarea {
+  min-height: 200px !important;
+  width: 100% !important;
+  font-size: 16px !important; /* Prevents iOS zoom on focus */
+}
+
+@media (max-width: 600px) {
+  .job-description-card {
+    padding: 12px !important;
+    margin: 0 -12px;
+  }
+  
+  .job-description-textarea {
+    min-height: 180px !important;
+    padding: 12px !important;
+  }
+
+  .form-section {
+    padding: 16px !important;
+  }
+}
+
+/* Fix iOS zoom issue on input focus */
+@media screen and (max-width: 600px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    font-size: 16px !important;
+  }
+}

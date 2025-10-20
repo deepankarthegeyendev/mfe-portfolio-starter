@@ -1,0 +1,65 @@
+.form-section {
+  background-color: var(--chakra-colors-white);
+}
+
+[data-theme="dark"] .form-section {
+  background-color: var(--chakra-colors-gray-800);
+  border-color: var(--chakra-colors-gray-600);
+}
+
+.form-heading {
+  color: var(--chakra-colors-blue-500);
+}
+
+[data-theme="dark"] .form-heading {
+  color: var(--chakra-colors-blue-300);
+}
+
+.form-label {
+  color: var(--chakra-colors-gray-700);
+}
+
+[data-theme="dark"] .form-label {
+  color: var(--chakra-colors-gray-200);
+}
+
+.form-input {
+  background-color: var(--chakra-colors-white);
+  border-color: var(--chakra-colors-gray-200);
+}
+
+[data-theme="dark"] .form-input {
+  background-color: var(--chakra-colors-gray-700);
+  border-color: var(--chakra-colors-gray-600);
+  color: var(--chakra-colors-white);
+}
+
+[data-theme="dark"] .form-input::placeholder {
+  color: var(--chakra-colors-gray-500);
+}
+
+.form-card {
+  background-color: var(--chakra-colors-white);
+  border-color: var(--chakra-colors-gray-200);
+}
+
+[data-theme="dark"] .form-card {
+  background-color: var(--chakra-colors-gray-700);
+  border-color: var(--chakra-colors-gray-600);
+}
+
+.form-text {
+  color: var(--chakra-colors-gray-800);
+}
+
+[data-theme="dark"] .form-text {
+  color: var(--chakra-colors-gray-200);
+}
+
+.skill-badge {
+  background-color: var(--chakra-colors-blue-500);
+}
+
+[data-theme="dark"] .skill-badge {
+  background-color: var(--chakra-colors-blue-400);
+}

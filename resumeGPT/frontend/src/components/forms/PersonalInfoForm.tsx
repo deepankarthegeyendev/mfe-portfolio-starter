@@ -6,8 +6,9 @@ import {
   Text,
   Icon,
   Input,
+  useColorModeValue,
 } from '@chakra-ui/react';
-import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaGlobe } from 'react-icons/fa';
+import { FaUser } from 'react-icons/fa';
 // Define PersonalInfo interface locally
 interface PersonalInfo {
   fullName: string;
@@ -29,28 +30,36 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ data, onChange }) =
     onChange({ ...data, [field]: value });
   };
 
+  const bg = useColorModeValue('white', 'gray.800');
+  const headingColor = useColorModeValue('blue.500', 'blue.300');
+  const labelColor = useColorModeValue('gray.700', 'gray.200');
+  const inputBg = useColorModeValue('white', 'gray.700');
+  const placeholderColor = useColorModeValue('gray.400', 'gray.500');
+
   return (
-    <Box bg="white" p={6} borderRadius="lg" boxShadow="sm">
-      <Heading size="md" mb={4} color="blue.500">
+    <Box bg={bg} p={6} borderRadius="lg" boxShadow="sm">
+      <Heading size="md" mb={4} color={headingColor}>
         <Icon as={FaUser} mr={2} />
         Personal Information
       </Heading>
       
       <VStack spacing={4}>
         <Box width="100%">
-          <Text fontSize="sm" fontWeight="medium" mb={2} color="gray.700">
+          <Text fontSize="sm" fontWeight="medium" mb={2} color={labelColor}>
             Full Name *
           </Text>
           <Input
             value={data.fullName}
             onChange={(e) => handleChange('fullName', e.target.value)}
             placeholder="Enter your full name"
+            bg={inputBg}
+            _placeholder={{ color: placeholderColor }}
             required
           />
         </Box>
 
         <Box width="100%">
-          <Text fontSize="sm" fontWeight="medium" mb={2} color="gray.700">
+          <Text fontSize="sm" fontWeight="medium" mb={2} color={labelColor}>
             Email *
           </Text>
           <Input
@@ -63,7 +72,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ data, onChange }) =
         </Box>
 
         <Box width="100%">
-          <Text fontSize="sm" fontWeight="medium" mb={2} color="gray.700">
+          <Text fontSize="sm" fontWeight="medium" mb={2} color={labelColor}>
             Phone *
           </Text>
           <Input
@@ -75,7 +84,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ data, onChange }) =
         </Box>
 
         <Box width="100%">
-          <Text fontSize="sm" fontWeight="medium" mb={2} color="gray.700">
+          <Text fontSize="sm" fontWeight="medium" mb={2} color={labelColor}>
             Location *
           </Text>
           <Input
@@ -87,7 +96,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ data, onChange }) =
         </Box>
 
         <Box width="100%">
-          <Text fontSize="sm" fontWeight="medium" mb={2} color="gray.700">
+          <Text fontSize="sm" fontWeight="medium" mb={2} color={labelColor}>
             LinkedIn Profile
           </Text>
           <Input
@@ -98,7 +107,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ data, onChange }) =
         </Box>
 
         <Box width="100%">
-          <Text fontSize="sm" fontWeight="medium" mb={2} color="gray.700">
+          <Text fontSize="sm" fontWeight="medium" mb={2} color={labelColor}>
             GitHub Profile
           </Text>
           <Input
@@ -109,7 +118,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ data, onChange }) =
         </Box>
 
         <Box width="100%">
-          <Text fontSize="sm" fontWeight="medium" mb={2} color="gray.700">
+          <Text fontSize="sm" fontWeight="medium" mb={2} color={labelColor}>
             Personal Website
           </Text>
           <Input

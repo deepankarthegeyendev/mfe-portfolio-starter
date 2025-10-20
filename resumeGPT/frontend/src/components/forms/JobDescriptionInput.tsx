@@ -8,6 +8,7 @@ import {
   Text,
   Icon,
 } from '@chakra-ui/react';
+import './JobDescription.css';
 import { FaFileAlt, FaSearch, FaLightbulb, FaInfoCircle } from 'react-icons/fa';
 
 // Define types locally
@@ -25,21 +26,18 @@ const JobDescriptionInput: React.FC<JobDescriptionInputProps> = ({
   isAnalyzing,
 }) => {
   return (
-    <Box>
+    <Box className="form-section" p={6} borderRadius="lg" boxShadow="sm">
       <VStack gap={4} align="stretch">
         <HStack>
-          <Icon as={FaFileAlt} color="blue.500" />
-          <Text fontSize="lg" fontWeight="semibold" color="blue.500">
-            Job Description
-          </Text>
-        </HStack>
-        <Text fontSize="sm" color="gray.600">
-          Paste the job description below to get AI-powered suggestions for optimizing your resume.
-        </Text>
-        <Box width="100%">
-          <Text fontSize="sm" fontWeight="medium" mb={2} color="gray.700">
+          <Icon as={FaFileAlt} className="form-heading" />
+          <Text fontSize="lg" fontWeight="semibold" className="form-heading">
             Job Description *
           </Text>
+        </HStack>
+        <Text fontSize="sm" className="form-text">
+          Paste the job description below to get AI-powered suggestions for optimizing your resume.
+        </Text>
+        <Box className="form-card job-description-card" p={4} borderRadius="md">
           <Textarea
             value={value}
             onChange={(e) => onChange(e.target.value)}
@@ -47,6 +45,7 @@ const JobDescriptionInput: React.FC<JobDescriptionInputProps> = ({
             rows={8}
             resize="vertical"
             required
+            className="form-input job-description-textarea"
           />
         </Box>
         <HStack gap={2}>

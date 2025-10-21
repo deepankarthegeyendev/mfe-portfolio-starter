@@ -75,7 +75,7 @@ const Header: React.FC = () => {
           </Box>
 
           <Box as={Link} to="/preview" style={{ color: 'white', display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-            <Icon as={FaEye} mr={2} /> <span className="header-btn-text">Resume</span>
+            <Icon as={FaEye} mr={2} /> <span className="header-btn-text">Preview</span>
           </Box>
 
           <Box onClick={toggleColorMode} style={{ color: 'white', display: 'flex', alignItems: 'center', cursor: 'pointer' }}>

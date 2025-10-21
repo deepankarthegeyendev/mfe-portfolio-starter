@@ -3,6 +3,7 @@ import { Link, BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Projects from "./components/Projects";
+import LeadIntro from "./components/LeadIntro";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { Container, Row, Col } from "react-bootstrap";
@@ -12,7 +13,8 @@ import SystemDesign from "./components/SystemDesign";
 
 const resumeData = {
   name: "Deepan Karthegeyen A",
-  title: "Software Architect | Expert in Full Stack Development & Cloud Architecture",
+  title:
+    "Software Architect | Expert in Full Stack Development & Cloud Architecture",
   contact: {
     phone: "9790912033",
     email: "deepan_31@yahoo.co.in",
@@ -76,35 +78,48 @@ const resumeData = {
   skillsFormatted: [
     {
       category: "Front-end",
-      technologies: ["Angular (Expert)", "JavaScript (Proficient)", "jQuery (Proficient)"]
+      technologies: [
+        "Angular (Expert)",
+        "JavaScript (Proficient)",
+        "jQuery (Proficient)",
+      ],
     },
     {
       category: "Back-end",
-      technologies: ["C# 8", ".NET Core (Expert)", "ASP.NET (Expert)"]
+      technologies: ["C# 8", ".NET Core (Expert)", "ASP.NET (Expert)"],
     },
     {
       category: "Databases",
-      technologies: ["MS SQL (Expert)", "PostgreSQL"]
+      technologies: ["MS SQL (Expert)", "PostgreSQL"],
     },
     {
       category: "Cloud Platforms",
-      technologies: ["AWS (S3, Lambda, SNS, SQS, Cognito, RDS, DMS)"]
+      technologies: ["AWS (S3, Lambda, SNS, SQS, Cognito, RDS, DMS)"],
     },
     {
       category: "DevOps",
-      technologies: ["Docker (Intermediate)"]
+      technologies: ["Docker (Intermediate)"],
     },
     {
       category: "Security",
-      technologies: ["Fedlet SSO (Expert)", "Google SSO", "AWS Cognito", "JWT (Expert)"]
+      technologies: [
+        "Fedlet SSO (Expert)",
+        "Google SSO",
+        "AWS Cognito",
+        "JWT (Expert)",
+      ],
     },
     {
       category: "Other Skills",
-      technologies: ["LINQ", "Entity Framework Core", "Dapper"]
+      technologies: ["LINQ", "Entity Framework Core", "Dapper"],
     },
     {
       category: "Architectural Design",
-      technologies: ["Micro-Frontend", "Microservices (Intermediate)", "RESTful APIs (Expert)"]
+      technologies: [
+        "Micro-Frontend",
+        "Microservices (Intermediate)",
+        "RESTful APIs (Expert)",
+      ],
     },
   ],
   languages: ["Tamil", "English"],
@@ -119,8 +134,8 @@ function ResumePage({ theme }) {
     minHeight: "100vh",
     padding: "2rem 1rem",
     fontFamily: "Segoe UI, sans-serif",
-    marginTop: '-73px',
-    marginBottom: '-30px',
+    marginTop: "-73px",
+    marginBottom: "-30px",
   };
 
   const sectionStyle = {
@@ -149,11 +164,17 @@ function ResumePage({ theme }) {
           <h2 style={{ margin: "0.5rem 0" }}>{resumeData.name}</h2>
           <p>{resumeData.title}</p>
           <p>
-            <a href={resumeData.contact.links[0].url} target="_blank" rel="noopener noreferrer">
+            <a
+              href={resumeData.contact.links[0].url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {resumeData.contact.links[0].label}
             </a>
             {" | "}
-            <a href={`mailto:${resumeData.contact.email}`}>{resumeData.contact.email}</a>
+            <a href={`mailto:${resumeData.contact.email}`}>
+              {resumeData.contact.email}
+            </a>
           </p>
         </div>
 
@@ -167,7 +188,8 @@ function ResumePage({ theme }) {
           <ul style={{ paddingLeft: "1rem" }}>
             {resumeData.skillsFormatted.map((skill, index) => (
               <li key={index} style={{ marginBottom: "1rem" }}>
-                <strong>{skill.category}:</strong> {skill.technologies.join(", ")}
+                <strong>{skill.category}:</strong>{" "}
+                {skill.technologies.join(", ")}
               </li>
             ))}
           </ul>
@@ -220,12 +242,22 @@ function LandingPage({ theme, onOpenContact, fabPos, onFabMove }) {
       <Container style={{ paddingTop: 0 }}>
         <Row className="justify-content-center mb-3">
           <Col md={10} className="text-center">
+            <LeadIntro />
+          </Col>
+        </Row>
+        <Row className="justify-content-center mb-3">
+          <Col md={10} className="text-center">
             <Projects theme={theme} />
           </Col>
         </Row>
         <Row className="justify-content-center mb-3">
           <Col md={10} className="text-center">
-            <Hero theme={theme} onOpenContact={onOpenContact} fabPos={fabPos} onFabMove={onFabMove} />
+            <Hero
+              theme={theme}
+              onOpenContact={onOpenContact}
+              fabPos={fabPos}
+              onFabMove={onFabMove}
+            />
           </Col>
         </Row>
       </Container>
@@ -236,15 +268,18 @@ function LandingPage({ theme, onOpenContact, fabPos, onFabMove }) {
 function App() {
   const [theme, setTheme] = useState("dark");
   const [openContact, setOpenContact] = useState(false);
-  const [contactSide, setContactSide] = useState('right'); // 'left' or 'right'
-  const [fabPos, setFabPos] = useState({ x: window.innerWidth - 96, y: window.innerHeight - 120 });
+  const [contactSide, setContactSide] = useState("right"); // 'left' or 'right'
+  const [fabPos, setFabPos] = useState({
+    x: window.innerWidth - 96,
+    y: window.innerHeight - 120,
+  });
   const isDark = theme === "dark";
   const toggleTheme = () => setTheme(isDark ? "light" : "dark");
 
   // Called by Hero when @ icon is clicked
   const handleOpenContact = () => {
     // Open from left if icon is on left half, else right
-    const side = fabPos.x < window.innerWidth / 2 ? 'left' : 'right';
+    const side = fabPos.x < window.innerWidth / 2 ? "left" : "right";
     setContactSide(side);
     setOpenContact((prev) => !prev);
   };
@@ -268,17 +303,28 @@ function App() {
         <div style={{ flex: 1 }}>
           <Routes>
             <Route
-              path={
-                process.env.NODE_ENV === "production"
-                  ? "/"
-                  : "/"
+              path={process.env.NODE_ENV === "production" ? "/" : "/"}
+              element={
+                <LandingPage
+                  theme={theme}
+                  onOpenContact={handleOpenContact}
+                  fabPos={fabPos}
+                  onFabMove={handleFabMove}
+                />
               }
-              element={<LandingPage theme={theme} onOpenContact={handleOpenContact} fabPos={fabPos} onFabMove={handleFabMove} />}
             />
             <Route path="/resume" element={<ResumePage theme={theme} />} />
-            <Route path="/system-design" element={<SystemDesign theme={theme} />} />
+            <Route
+              path="/system-design"
+              element={<SystemDesign theme={theme} />}
+            />
           </Routes>
-          <Contact open={openContact} onClose={() => setOpenContact(false)} theme={theme} fabPos={fabPos} />
+          <Contact
+            open={openContact}
+            onClose={() => setOpenContact(false)}
+            theme={theme}
+            fabPos={fabPos}
+          />
         </div>
         <Footer theme={theme} />
       </Router>

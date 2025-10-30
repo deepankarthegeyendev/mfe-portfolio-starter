@@ -225,11 +225,7 @@ function ResumePage({ theme }) {
 
 function LandingPage({ theme, onOpenContact, fabPos, onFabMove }) {
   const isDark = theme === "dark";
-  const panel1Bg = isDark ? "#46605a" : "#e6f0fa";
-  const panel2Bg = isDark ? "#7a5fa0" : "#f5e6fa";
-  const panelText = isDark ? "white" : "#222";
-  const tagColor = isDark ? "#eaeaea" : "#444";
-
+  
   return (
     <div
       style={{
@@ -242,7 +238,7 @@ function LandingPage({ theme, onOpenContact, fabPos, onFabMove }) {
       <Container style={{ paddingTop: 0 }}>
         <Row className="justify-content-center mb-3">
           <Col md={10} className="text-center">
-            <LeadIntro />
+            <LeadIntro theme={theme} />
           </Col>
         </Row>
         <Row className="justify-content-center mb-3">

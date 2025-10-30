@@ -1,29 +1,51 @@
-// LeadIntroTrend.jsx
-import { motion } from "framer-motion";
+// LeadIntroTrend.jsx  (hover-fixed version)
+import React from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
-/**
- * Trendy, centered intro banner for personal portfolio pages.
- * - No buttons, compact
- * - Slight glass effect, left accent bar, tech chips
- * - Subtitle color increased for better contrast
- *
- * Usage: place above Projects (Col md={10})
- */
-export default function LeadIntroTrend({ theme }) {
+export default function LeadIntroTrend({ theme = "light" }) {
   const title = "Senior Engineering Leader — Full-Stack & AI";
   const subtitle =
     "Senior engineering leader with 14+ years delivering enterprise-grade web platforms and cloud-native SaaS. Focused on leveraging AI/ML and strategic tooling to accelerate product outcomes.";
-  const chips = [" .NET ", " Angular ", " AI / ML "];
-  const isDark = theme === "dark";
-  const panelBg = isDark ? "#46605a" : "#e6f0fa";
-  const panelText = isDark ? "white" : "#222";
-  const tagColor = isDark ? "#eaeaea" : "#444";
-  const badgeBg = isDark ? "#ffaa00" : "#ffcc00";
-  const badgeColor = "#000";
-  const chipBg = isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.04)';
-  const chipBorder = isDark ? '1px solid rgba(255,255,255,0.03)' : '1px solid rgba(0,0,0,0.06)';
+  const chips = [".NET", "Angular", "AI / ML"];
 
-  const MotionDiv = motion.div;
+  const TITLE_ANIM_DURATION = 2.1;
+  const TITLE_DELAY = 0.18;
+  const HOVER_LIFT = 8;
+
+  const isDark = theme === "dark";
+  const reduce = useReducedMotion();
+
+  const panelText = isDark ? "#F7FAFC" : "#0B1720";
+  const accentGradient = "linear-gradient(180deg,#9EE37C,#5EE0B5)";
+  const chipGradient = "linear-gradient(90deg,#667EEA,#764BA2)";
+
+  // variants
+  const titleVariant = {
+    hidden: { opacity: 0, y: 10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: TITLE_ANIM_DURATION, ease: [0.2, 0.85, 0.25, 1], delay: TITLE_DELAY },
+    },
+  };
+
+  const chipsContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.06, delayChildren: TITLE_DELAY + 0.18 } } };
+  const chipVariant = { hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.42 } } };
+
+  // hover props for Framer Motion
+  const hoverProps = reduce
+    ? {}
+    : {
+        whileHover: {
+          y: -HOVER_LIFT,
+          scale: 1.005,
+          boxShadow:
+            isDark
+              ? `0 ${HOVER_LIFT * 1.4}px ${HOVER_LIFT * 6}px rgba(0,0,0,0.5), inset 0 -6px 18px rgba(255,255,255,0.03)`
+              : `0 ${HOVER_LIFT * 1.4}px ${HOVER_LIFT * 5}px rgba(12,18,28,0.12), inset 0 -8px 18px rgba(255,255,255,0.28)`,
+        },
+        transition: { type: "spring", stiffness: 220, damping: 28 },
+      };
 
   return (
     <section
@@ -32,38 +54,38 @@ export default function LeadIntroTrend({ theme }) {
         width: "100%",
         display: "flex",
         justifyContent: "center",
-        padding: "20px 12px",
-        marginBottom: 22,
+        padding: "26px 12px",
+        marginBottom: 18,
       }}
     >
-      {/* Inline styles + small local CSS for animation */}
-      <style>{`
-        /* fade/slide in */
-        @keyframes fadeSlideUp {
-          from { opacity: 0; transform: translateY(8px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .lit-card { 
-          animation: fadeSlideUp 420ms ease both;
-        }
-      `}</style>
-
-      <div
+      {/* motion card with whileHover */}
+      <motion.div
         className="lit-card"
+        initial={reduce ? "visible" : { opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
         style={{
           maxWidth: 980,
           width: "100%",
           textAlign: "center",
-          padding: "20px 26px",
+          padding: "26px 28px",
           borderRadius: 14,
-          display: "block",
           position: "relative",
           overflow: "hidden",
-          // glass / subtle gradient
-          background:
-            "linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))",
-          border: "1px solid rgba(255,255,255,0.04)",
-          //boxShadow: "0 8px 30px rgba(2,6,23,0.6)"
+          background: isDark
+            ? "linear-gradient(180deg, rgba(20,28,32,0.62), rgba(10,12,14,0.36))"
+            : "linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,249,251,0.98))",
+          border: isDark ? "1px solid rgba(255,255,255,0.03)" : "1px solid rgba(2,6,23,0.04)",
+          boxShadow: isDark ? "0 10px 30px rgba(2,6,23,0.55)" : "0 12px 40px rgba(12,18,28,0.04)",
+          display: "block",
+          willChange: "transform, box-shadow",
+          cursor: "default",
+        }}
+        {...hoverProps}
+        onHoverStart={() => {
+          /* placeholder if you want state on hover */
+        }}
+        onHoverEnd={() => {
+          /* placeholder if you want state on hover end */
         }}
       >
         {/* left accent bar */}
@@ -72,41 +94,47 @@ export default function LeadIntroTrend({ theme }) {
           style={{
             position: "absolute",
             left: 0,
-            top: 0,
-            bottom: 0,
-            width: 6,
-            borderTopRightRadius: 6,
-            borderBottomRightRadius: 6,
-            background: "linear-gradient(180deg,#9EE37C,#5EE0B5)",
+            top: 12,
+            bottom: 12,
+            width: 8,
+            borderTopRightRadius: 8,
+            borderBottomRightRadius: 8,
+            background: accentGradient,
             opacity: 0.98,
+            zIndex: 1,
+            boxShadow: "0 6px 18px rgba(46,180,120,0.08)",
+            pointerEvents: "none",
           }}
         />
 
-        <div style={{ position: "relative", zIndex: 2 }}>
-          <h2
+        <div style={{ position: "relative", zIndex: 2, paddingLeft: 16 }}>
+          {/* slow title animation */}
+          <motion.h2
+            variants={titleVariant}
+            initial={reduce ? "visible" : "hidden"}
+            animate="visible"
             style={{
               margin: 0,
-              fontSize: "1.18rem",
-              color: panelText, //"#E8F9B6", // soft lime for headline
+              paddingLeft: 8,
+              fontSize: "clamp(1.1rem, 3.2vw, 2.1rem)",
+              color: panelText,
               lineHeight: 1.05,
               fontWeight: 800,
-              letterSpacing: "0.3px",
-              paddingLeft: 12, // create breathing from accent
+              letterSpacing: "0.2px",
             }}
           >
             {title}
-          </h2>
+          </motion.h2>
 
           <p
             style={{
               marginTop: 10,
               marginBottom: 12,
-              // subtitle darker / more contrast (more visible than previous)
-              color: panelText, //"rgba(255,255,255,0.96)",
-              fontSize: "0.98rem",
+              color: panelText,
+              fontSize: "clamp(0.95rem, 1.4vw, 1.02rem)",
               fontWeight: 500,
               lineHeight: 1.45,
-              maxWidth: 840,
+              maxWidth: 820,
               marginLeft: "auto",
               marginRight: "auto",
               paddingLeft: 6,
@@ -116,37 +144,59 @@ export default function LeadIntroTrend({ theme }) {
             {subtitle}
           </p>
 
-          {/* chips row - animate each chip individually with a small stagger */}
-          <div style={{ display: "flex", gap: 8, justifyContent: "center", flexWrap: "wrap", paddingTop: 6 }}>
+          {/* chips row */}
+          <motion.div
+            initial={reduce ? "visible" : "hidden"}
+            animate="visible"
+            variants={chipsContainer}
+            style={{
+              display: "flex",
+              gap: 10,
+              justifyContent: "center",
+              flexWrap: "wrap",
+              paddingTop: 6,
+            }}
+          >
             {chips.map((c, i) => (
-              <MotionDiv
+              <motion.span
                 key={i}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, ease: "easeOut", delay: i * 0.08 }}
+                variants={chipVariant}
                 style={{
-                  padding: "6px 10px",
+                  padding: "6px 12px",
                   borderRadius: 999,
-                  fontSize: "0.83rem",
+                  fontSize: "0.82rem",
                   fontWeight: 700,
-                  background: "linear-gradient(90deg, #667EEA, #764BA2)",
-                  border: chipBorder,
-                  color: panelText,
-                  display: "inline-block"
+                  background: chipGradient,
+                  color: "#fff",
+                  display: "inline-block",
+                  boxShadow: "0 8px 22px rgba(102,126,234,0.12)",
+                  pointerEvents: "auto",
                 }}
               >
                 {c}
-              </MotionDiv>
+              </motion.span>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
+
+      {/* helpful CSS: make sure overlays and heavy background elements don't block pointer events */}
+      <style>{`
+        /* If you have a video or decorative overlay inside the hero, ensure they don't block hover */
+        .lead-hero__video, .lead-hero__overlay {
+          pointer-events: none;
+        }
+
+        /* keyboard focus-visible styling */
+        .lit-card:focus-within {
+          outline: 3px solid rgba(102,126,234,0.12);
+          outline-offset: 6px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .lit-card { transition: none !important; transform: none !important; box-shadow: none !important; }
+        }
+      `}</style>
     </section>
   );
 }
-
-// LeadIntroTrend.propTypes = {
-//   title: PropTypes.string,
-//   subtitle: PropTypes.string,
-//   chips: PropTypes.arrayOf(PropTypes.string)
-// };
